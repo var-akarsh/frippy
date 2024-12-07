@@ -18,7 +18,7 @@ const IntroSection = () => {
         /> */}
         <div className="flex flex-col mt-6 md:mt-12 w-full md:w-5/12">
           <p className="text-3xl font-gilroy-bold text-[#F5F5DC]">
-            We Provide you the best platform to start
+            Why Frippy?
           </p>
           <p className="mt-7 text-slate-500 text-sm font-gilroy-regular">
             We offer you the best platform to make some side income while
