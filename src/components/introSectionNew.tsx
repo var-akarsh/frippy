@@ -94,7 +94,11 @@ const introSectionNew = () => {
             alt={leftItem.title}
             width={200}
             height={200}
-            className="hidden lg:block pt-16"
+            className="
+            hidden
+            md:block
+            lg:block
+            block pt-16"
           />
           <Stack
             direction="column"
