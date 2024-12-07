@@ -5,6 +5,7 @@ import FeatureSection from "@/components/featureSection";
 import FaqSection from "../components/faq";
 import FooterSection from "../components/footerSection";
 import IntroSection from "@/components/introSection";
+import IntroSectionNew from "@/components/introSectionNew";
 import "./globals.css";
 export default function Home() {
   return (
@@ -13,7 +14,8 @@ export default function Home() {
         <Navbar />
         <HeroSection />
       </div>
-      <IntroSection />
+      <IntroSectionNew />
+      {/* <IntroSection /> */}
       <FeatureSection />
       {/* <UniversitiesSection /> */}
       <FaqSection />
