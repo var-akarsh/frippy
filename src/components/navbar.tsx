@@ -13,10 +13,10 @@ const Navbar = () => {
 
   const menuItems = [
     { name: "Home", href: "#" },
-    { name: "Benefits", href: "#" },
-    { name: "Universities", href: "#" },
-    { name: "About Us", href: "#" },
+    { name: "Why Frippy", href: "#" },
+    { name: "Products", href: "#" },
     { name: "FAQ", href: "#" },
+    { name: "Contact", href: "#" },
   ];
 
   // Handle scroll direction
