@@ -21,7 +21,7 @@ const Navbar = () => {
   // Handle scroll direction
   const controlNavbar = () => {
     if (typeof window !== "undefined") {
-      if (window.scrollY < lastScrollY) {
+      if (window.scrollY < 10) {
         // If scrolling up, show the navbar
         setIsVisible(true);
       } else {
