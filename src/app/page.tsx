@@ -1,10 +1,10 @@
-'use client';
-import Navbar from '@/components/navbar';
-import HeroSection from '@/components/heroSection';
-import FeatureSection from '@/components/featureSection';
-import FaqSection from '../components/faq'
+"use client";
+import Navbar from "@/components/navbar";
+import HeroSection from "@/components/heroSection";
+import FeatureSection from "@/components/featureSection";
+import FaqSection from "../components/faq";
 import FooterSection from "../components/footerSection";
-import IntroSection from '@/components/introSection';
+import IntroSection from "@/components/introSection";
 import "./globals.css";
 export default function Home() {
   return (

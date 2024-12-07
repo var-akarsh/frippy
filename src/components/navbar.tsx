@@ -1,26 +1,26 @@
-'use client';
-import { useState, useEffect } from 'react';
+"use client";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [lastScrollY, setLastScrollY] = useState(10);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const menuItems = [
-    { name: 'Home', href: '#' },
-    { name: 'Benefits', href: '#' },
-    { name: 'Universities', href: '#' },
-    { name: 'About Us', href: '#' },
-    { name: 'FAQ', href: '#' },
+    { name: "Home", href: "#" },
+    { name: "Benefits", href: "#" },
+    { name: "Universities", href: "#" },
+    { name: "About Us", href: "#" },
+    { name: "FAQ", href: "#" },
   ];
 
   // Handle scroll direction
   const controlNavbar = () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       if (window.scrollY < lastScrollY) {
         // If scrolling up, show the navbar
         setIsVisible(true);
@@ -33,19 +33,19 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlNavbar);
 
       return () => {
-        window.removeEventListener('scroll', controlNavbar);
+        window.removeEventListener("scroll", controlNavbar);
       };
     }
   }, [lastScrollY]);
 
   return (
     <div
-      className={`bg-[#E07B39] py-2 px-8 fixed top-6 w-full max-w-[60%] mx-auto z-10 rounded-full shadow-lg transition-transform duration-300 ${
-        isVisible ? 'translate-y-0' : '-translate-y-full'
+      className={`bg-[#E07B39] py-3 px-8 fixed top-0 w-full max-w-[60%] mx-auto z-10 rounded-full shadow-lg transition-transform duration-300 ${
+        isVisible ? "translate-y-6" : "-translate-y-full"
       }`}
     >
       <div className="flex justify-between items-center w-full">
@@ -88,7 +88,7 @@ const Navbar = () => {
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="text-sm font-gilroy-bold text-white hover:text-black transition-colors duration-300"
+                  className="text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300"
                 >
                   {item.name}
                 </a>
@@ -100,13 +100,13 @@ const Navbar = () => {
 
       {/* Mobile Menu - Expands in a slightly larger rectangle, right-aligned */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-[#E07B39] px-5 py-4 mt-2 rounded-lg w-56 fixed top-[60px] right-6 z-20">
+        <div className="lg:hidden bg-[#E07B39] px-5 py-4 mt-2 rounded-lg w-60 fixed top-[60px] left-1/2 transform -translate-x-1/2 z-20">
           <ul className="space-y-3">
             {menuItems.map((item) => (
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="block text-sm font-gilroy-bold text-white hover:text-black transition-colors duration-300"
+                  className="block text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300"
                 >
                   {item.name}
                 </a>
