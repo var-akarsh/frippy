@@ -4,13 +4,13 @@ import { InfiniteMovingCards } from "./aceternity/InfiniteMovingCards";
 
 const FeatureSection = () => {
   return (
-    <div className="bg-[#F5F5DC] p-14">
+    <div className="bg-[#F5F5DC] py-14">
       <div className="flex justify-center items-center">
         <h2 className="text-center text-4xl font-gilroy-bold text-black pb-5">
           Happy Customers✨
         </h2>
       </div>
-      <div className="h-full rounded-md flex flex-col  dark:bg-[#E07B39] dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+      <div className="flex justify-center items-center max-w-8xl mx-auto overflow-x-hidden w-full h-full py-2">
         <InfiniteMovingCards
           items={testimonials}
           direction="right"
