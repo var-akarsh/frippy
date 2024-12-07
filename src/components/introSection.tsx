@@ -8,7 +8,7 @@ import Interaction from "../../public/images/interactive.png";
 
 const IntroSection = () => {
   return (
-    <div>
+    <div className="h-screen">
       {/* Intro Section */}
       <div className="flex flex-col md:flex-row p-8">
         {/* <Image
@@ -17,9 +17,11 @@ const IntroSection = () => {
           alt="intro_image"
         /> */}
         <div className="flex flex-col mt-6 md:mt-12 w-full md:w-5/12">
-          <p className="text-3xl font-gilroy-bold text-[#F5F5DC]">
-            Why Frippy?
-          </p>
+          <div className="flex justify-center items-center">
+            <h2 className="text-left text-4xl font-gilroy-bold text-black p-5">
+              Why Frippy?
+            </h2>
+          </div>
           <p className="mt-7 text-slate-500 text-sm font-gilroy-regular">
             We offer you the best platform to make some side income while
             working. You also get the satisfaction of helping new dreamers. This
@@ -30,13 +32,10 @@ const IntroSection = () => {
         </div>
       </div>
 
-      {/* Features Section - Row Layout */}
-      <div
-        className="flex flex-direction: column;
- flex-wrap justify-center gap-10 py-7 px-6"
-      >
+      {/* Features Section - Row Layout 3 items */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-7 px-6">
         {/* Seamless Onboarding */}
-        <div className="w-full sm:w-52 md:w-52 flex flex-col items-center">
+        <div className="flex flex-col items-center w-auto">
           <Image
             src={myImage}
             alt="Seamless Onboarding"
@@ -54,7 +53,7 @@ const IntroSection = () => {
         </div>
 
         {/* Flexible Scheduling */}
-        <div className="w-full sm:w-52 md:w-52 flex flex-col items-center">
+        <div className="flex flex-col items-center w-auto">
           <Image
             src={flexibleTiming}
             alt="Flexible Scheduling"
@@ -72,7 +71,7 @@ const IntroSection = () => {
         </div>
 
         {/* Direct Interaction */}
-        <div className="w-full sm:w-52 md:w-52 flex flex-col items-center">
+        <div className="flex flex-col items-center w-auto">
           <Image
             src={Interaction}
             alt="Direct Interaction"

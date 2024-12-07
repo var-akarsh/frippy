@@ -12,10 +12,10 @@ const HeroSection = () => {
 
   return (
     <BackgroundBeamsWithCollision>
-      <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center gap-5 mt-8 px-4 lg:px-16">
+      <div className="h-screen flex flex-col lg:flex-row justify-center lg:justify-between items-center gap-5 mt-8 px-4 lg:px-16">
         {/* Text Section */}
         <div className="flex flex-col gap-4 sm:justify-center sm:items-center md:justify-center md:items-center lg:gap-8">
-          <p className="text-black font-gilroy-bold font-bold sm:text-3xl sm:text-center sm:text-center sm:text-5xl lg:text-6xl mt-10 leading-tight">
+          <p className="text-black font-gilroy-bold font-bold sm:text-3xl sm:text-left sm:text-5xl lg:text-6xl mt-10 leading-tight">
             We Deliver <br /> We Install <br className="text-blue-500" />
             <span className="text-[#E07B39] inline-block relative">
               {/* Ensure consistent width for FlipWords to prevent flicker */}

@@ -1,10 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(10);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,7 +22,7 @@ const Navbar = () => {
   // Handle scroll direction
   const controlNavbar = () => {
     if (typeof window !== "undefined") {
-      if (window.scrollY < lastScrollY) {
+      if (window.scrollY < 10) {
         // If scrolling up, show the navbar
         setIsVisible(true);
       } else {
@@ -29,6 +30,12 @@ const Navbar = () => {
         setIsVisible(false);
       }
       setLastScrollY(window.scrollY);
+    }
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsMenuOpen(false);
     }
   };
 
@@ -42,8 +49,21 @@ const Navbar = () => {
     }
   }, [lastScrollY]);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <div
+      ref={menuRef}
       className={`bg-[#E07B39] py-3 px-8 fixed top-0 w-full max-w-[60%] mx-auto z-10 rounded-full shadow-lg transition-transform duration-300 ${
         isVisible ? "translate-y-6" : "-translate-y-full"
       }`}
