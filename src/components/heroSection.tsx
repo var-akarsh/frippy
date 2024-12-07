@@ -30,7 +30,7 @@ const HeroSection = () => {
           </p>
           <div className="flex justify-flex-start gap-4">
             {/* Correct WhatsApp Link */}
-            <Link href="https://wa.me/919421626352?text=Hi%2C%20I%20want%20to%20place%20an%20order">
+            <Link href="https://wa.me/919466533162?text=Hi%2C%20I%20want%20to%20place%20an%20order">
               <button className="py-2 px-6 bg-[#E07B39] rounded-md text-[#F5F5DC] font-gilroy-bold shadow-sm transition duration-200 hover:bg-[#d46c32] hover:text-white border-2 border-transparent hover:border-black sm:mt-10">
                 Order on WhatsApp
               </button>
