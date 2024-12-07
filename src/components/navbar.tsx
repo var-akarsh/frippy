@@ -15,6 +15,7 @@ const Navbar = () => {
     { name: "Home", href: "#" },
     { name: "Why Frippy", href: "#" },
     { name: "Products", href: "#" },
+    { name: "Reviews", href: "#" },
     { name: "FAQ", href: "#" },
     { name: "Contact", href: "#" },
   ];
