@@ -18,7 +18,7 @@ export default function Home() {
       <div id="why-frippy">
         <IntroSection />
       </div>
-      <div id="products">
+      <div id="testimonials">
         <FeatureSection />
       </div>
       <div id="faq">
