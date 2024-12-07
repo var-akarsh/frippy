@@ -148,12 +148,12 @@ const introSectionNew = () => {
                 letterSpacing: "0.01em",
               }}
             >
-              At Fripy, we make protecting and personalizing your smartphone
+              At Frippy, we make protecting and personalizing your smartphone
               simple and hassle-free. Our mission is to provide top-quality
               screen protectors and back cases delivered right to your doorstep,
-              saving you time and effort. With Fripy, you get trusted products,
+              saving you time and effort. With Frippy, you get trusted products,
               reliable service, and the convenience of never having to leave
-              your home. Choose Fripy for a seamless mobile accessory shopping
+              your home. Choose Frippy for a seamless mobile accessory shopping
               experience!
             </Typography>
           </Stack>
