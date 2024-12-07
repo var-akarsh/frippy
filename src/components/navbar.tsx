@@ -44,7 +44,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-[#E07B39] py-4 px-8 fixed top-6 w-full max-w-[90%] mx-auto z-10 rounded-full shadow-lg transition-transform duration-300 ${
+      className={`bg-[#E07B39] py-2 px-8 fixed top-6 w-full max-w-[60%] mx-auto z-10 rounded-full shadow-lg transition-transform duration-300 ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
