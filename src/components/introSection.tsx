@@ -1,94 +1,228 @@
-import Image from "next/image";
 import React from "react";
-import IntroImage from "../../public/images/introImage.jpg";
-import { AiOutlineThunderbolt } from "react-icons/ai";
+import { Grid2, Stack, Typography } from "@mui/material";
 import myImage from "../../public/images/check.png";
 import flexibleTiming from "../../public/images/happy-hour.png";
 import Interaction from "../../public/images/interactive.png";
+import yus from "../../public/images/whyUs.png";
+import Image from "next/image";
+import "./divider.css";
 
 const IntroSection = () => {
+  const items = [
+    {
+      title: "Same-Day Delivery",
+      subtitle:
+        "Receive your mobile accessories at your doorstep on the same day for maximum convenience.",
+      image: myImage,
+    },
+    {
+      title: "Doorstep Installation",
+      subtitle:
+        "Our experts will install screen protectors right at your home, ensuring a perfect fit and bubble-free application.",
+      image: flexibleTiming,
+    },
+    {
+      title: "Affordable Pricing",
+      subtitle:
+        "Enjoy top-notch mobile accessories at budget-friendly prices, without compromising on quality.",
+      image: Interaction,
+    },
+  ];
+
+  const leftItem = {
+    title: "Premium Quality Products",
+    subtitle:
+      "Receive your mobile accessories at your doorstep on the same day for maximum convenience.",
+    image: yus,
+  };
+
   return (
-    <div className="h-screen">
-      {/* Intro Section */}
-      <div className="flex flex-col md:flex-row p-8">
-        {/* <Image
-          src={IntroImage}
-          className="w-full md:w-1/2 h-auto md:h-2/3"
-          alt="intro_image"
-        /> */}
-        <div className="flex flex-col mt-6 md:mt-12 w-full md:w-5/12">
-          <div className="flex justify-center items-center">
-            <h2 className="text-left text-4xl font-gilroy-bold text-black p-5">
+    <Stack
+      direction="column"
+      spacing={4}
+      justifyContent="center"
+      alignItems="center"
+      sx={{
+        p: 4,
+        paddingBottom: 20,
+        position: "relative",
+      }}
+    >
+      <div className="custom-shape-divider-bottom-1733568657">
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+            className="shape-fill"
+          ></path>
+        </svg>
+      </div>
+
+      <Stack
+        direction={{
+          xs: "column",
+        }}
+        justifyContent="center"
+        alignItems="center"
+        spacing={4}
+      >
+        <Stack
+          direction={{
+            xs: "column",
+            sm: "row",
+          }}
+          justifyContent="center"
+          alignItems="center"
+          spacing={10}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            textAlign: "center",
+            width: "100%",
+            maxWidth: "1200px",
+            margin: "auto",
+          }}
+        >
+          <Image
+            src={leftItem.image}
+            alt={leftItem.title}
+            width={200}
+            height={200}
+            className="
+            hidden
+            md:block
+            lg:block
+            block pt-16"
+          />
+          <Stack
+            direction="column"
+            justifyContent={{
+              xs: "center",
+              sm: "flex-start",
+            }}
+            alignItems={{
+              xs: "center",
+              sm: "flex-start",
+            }}
+            spacing={2}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+              width: "100%",
+              maxWidth: "600px",
+            }}
+          >
+            <Typography
+              variant="h2"
+              sx={{
+                textAlign: {
+                  xs: "center",
+                  sm: "left",
+                },
+                color: "text.primary",
+                fontWeight: "bold",
+                fontSize: "2.5rem",
+                lineHeight: "3rem",
+                letterSpacing: "0.01em",
+              }}
+            >
               Why Frippy?
-            </h2>
-          </div>
-          <p className="mt-7 text-slate-500 text-sm font-gilroy-regular">
-            We offer you the best platform to make some side income while
-            working. You also get the satisfaction of helping new dreamers. This
-            is just the beginning. We have a lot more for you, and this is the
-            best opportunity for you with special offers for early participants.
-            Stay tuned!
-          </p>
-        </div>
-      </div>
-
-      {/* Features Section - Row Layout 3 items */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-7 px-6">
-        {/* Seamless Onboarding */}
-        <div className="flex flex-col items-center w-auto">
-          <Image
-            src={myImage}
-            alt="Seamless Onboarding"
-            width={80}
-            height={80}
-            className="w-16 h-16"
-          />
-          <p className="font-bold mt-2 font-gilroy-bold text-center">
-            Seamless Onboarding
-          </p>
-          <p className="text-slate-500 text-sm mt-1 text-center font-gilroy-light">
-            Effortlessly become a mentor in just a few straightforward steps.
-            Our simple process ensures you can get started quickly and easily.
-          </p>
-        </div>
-
-        {/* Flexible Scheduling */}
-        <div className="flex flex-col items-center w-auto">
-          <Image
-            src={flexibleTiming}
-            alt="Flexible Scheduling"
-            width={80}
-            height={80}
-            className="w-16 h-16"
-          />
-          <p className="font-bold mt-2 font-gilroy-bold text-center">
-            Flexible Scheduling
-          </p>
-          <p className="text-slate-500 text-sm mt-1 text-center font-gilroy-light">
-            Choose convenient times to mentor students. Our platform fits your
-            availability, making mentoring easy to schedule.
-          </p>
-        </div>
-
-        {/* Direct Interaction */}
-        <div className="flex flex-col items-center w-auto">
-          <Image
-            src={Interaction}
-            alt="Direct Interaction"
-            width={80}
-            height={80}
-            className="w-16 h-16"
-          />
-          <p className="font-bold mt-2 font-gilroy-bold text-center">
-            Direct Interaction
-          </p>
-          <p className="text-slate-500 text-sm mt-1 text-center font-gilroy-light">
-            Engage with your future peers through one-on-one interactions. Build
-            meaningful relationships and provide tailored guidance.
-          </p>
-        </div>
-      </div>
-    </div>
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                textAlign: {
+                  xs: "center",
+                  sm: "left",
+                },
+                maxWidth: "600px",
+                color: "text.secondary",
+                fontWeight: "light",
+                fontSize: "1.25rem",
+                lineHeight: "1.75rem",
+                letterSpacing: "0.01em",
+              }}
+            >
+              At Frippy, we make protecting and personalizing your smartphone
+              simple and hassle-free. Our mission is to provide top-quality
+              screen protectors and back cases delivered right to your doorstep,
+              saving you time and effort. With Frippy, you get trusted products,
+              reliable service, and the convenience of never having to leave
+              your home. Choose Frippy for a seamless mobile accessory shopping
+              experience!
+            </Typography>
+          </Stack>
+        </Stack>
+      </Stack>
+      <Grid2
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={4}
+        sx={{
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "auto",
+          height: "100%",
+          paddingTop: {
+            xs: 0,
+            sm: 5,
+          },
+        }}
+      >
+        {items.map((item, index) => (
+          <Grid2
+            key={index}
+            size={{
+              xs: 12,
+              sm: 6,
+              md: 4,
+            }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+              borderRadius: "10px",
+              boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
+              padding: "20px",
+              height: "240px",
+              width: "100%",
+              gap: "10px",
+              paddingX: {
+                xs: "40px",
+                sm: "40px",
+              },
+            }}
+          >
+            <Image
+              src={item.image}
+              alt={item.title}
+              width={80}
+              height={80}
+              className="w-16 h-16"
+            />
+            <p className="font-bold font-gilroy-bold text-center">
+              {item.title}
+            </p>
+            <p className="text-slate-500 text-sm mt-2 text-center font-gilroy-light">
+              {item.subtitle}
+            </p>
+          </Grid2>
+        ))}
+      </Grid2>
+    </Stack>
   );
 };
 

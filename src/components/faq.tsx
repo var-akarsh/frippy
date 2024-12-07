@@ -5,34 +5,34 @@ const FaqSection = () => {
 
   const faqItems = [
     {
-      question: "What products does Fripy offer?",
+      question: "What products does Frippy offer?",
       answer:
-        "Fripy specializes in delivering high-quality mobile accessories, including screen protectors and back cases, directly to your doorstep. Our collection is designed to provide protection and style for a wide range of smartphone models.",
+        "Frippy specializes in delivering high-quality mobile accessories, including screen protectors and back cases, directly to your doorstep. Our collection is designed to provide protection and style for a wide range of smartphone models.",
     },
     {
-      question: "Does Fripy offer same-day delivery?",
+      question: "Does Frippy offer same-day delivery?",
       answer:
         "Yes, we pride ourselves on delivering all our products on the same day you place your order! Simply order before our daily cut-off time, and we will ensure your mobile accessories reach your doorstep within hours.",
     },
     {
-      question: "How is Fripy different from others?",
+      question: "How is Frippy different from others?",
       answer:
-        "With Fripy, you don not need to commit to a purchase before trying the product. We offer a unique *try-before-you-pay* option—select a variety of products, try them out yourself, and pay only for the ones you choose at the time of delivery.",
+        "With Frippy, you don not need to commit to a purchase before trying the product. We offer a unique *try-before-you-pay* option—select a variety of products, try them out yourself, and pay only for the ones you choose at the time of delivery.",
     },
     {
-      question: "Which areas does Fripy deliver to?",
+      question: "Which areas does Frippy deliver to?",
       answer:
-        "Currently, Fripy delivers to most locations across India. If you are unsure whether we deliver to your area, you can check by entering your pin code on our website at checkout.",
+        "Currently, Frippy delivers to most locations across India. If you are unsure whether we deliver to your area, you can check by entering your pin code on our website at checkout.",
     },
     {
-      question: "What is the warranty on Fripy products?",
+      question: "What is the warranty on Frippy products?",
       answer:
-        "All products purchased from Fripy come with a standard 6-month warranty, covering any manufacturing defects. For specific warranty details on individual products, please refer to the product page or contact our customer support.",
+        "All products purchased from Frippy come with a standard 6-month warranty, covering any manufacturing defects. For specific warranty details on individual products, please refer to the product page or contact our customer support.",
     },
     {
-      question: "Does Fripy offer a care plan for mobile accessories?",
+      question: "Does Frippy offer a care plan for mobile accessories?",
       answer:
-        "Yes, Fripy offers an optional care plan for certain mobile accessories, such as screen protectors and back cases. This plan includes free replacements for accidental damages within the first 6 months. You can opt for this plan during checkout.",
+        "Yes, Frippy offers an optional care plan for certain mobile accessories, such as screen protectors and back cases. This plan includes free replacements for accidental damages within the first 6 months. You can opt for this plan during checkout.",
     },
   ];
 

@@ -11,23 +11,30 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Update: Each menu item now has a corresponding section id
   const menuItems = [
-    { name: "Home", href: "#" },
-    { name: "Why Frippy", href: "#" },
-    { name: "Products", href: "#" },
+    { name: "Home", href: "#home" },
+    { name: "Why Frippy", href: "#why-frippy" },
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Reviews", href: "#" },
-    { name: "FAQ", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "FAQ", href: "#faq" },
+    { name: "Contact", href: "#contact" },
   ];
+
+  // Scroll to section when a navbar item is clicked
+  const scrollToSection = (id: string) => {
+    const section = document.querySelector(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   // Handle scroll direction
   const controlNavbar = () => {
     if (typeof window !== "undefined") {
       if (window.scrollY < 10) {
-        // If scrolling up, show the navbar
         setIsVisible(true);
       } else {
-        // If scrolling down, hide the navbar
         setIsVisible(false);
       }
       setLastScrollY(window.scrollY);
@@ -75,7 +82,6 @@ const Navbar = () => {
           <span className="text-white font-gilroy-bold text-2xl font-extrabold">
             Frippy
           </span>
-          {/* Adding margin-right to create space */}
           <div className="mr-6"></div>
         </div>
 
@@ -108,8 +114,8 @@ const Navbar = () => {
             {menuItems.map((item) => (
               <li key={item.name}>
                 <a
-                  href={item.href}
-                  className="text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300"
+                  onClick={() => scrollToSection(item.href)}
+                  className="text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300 cursor-pointer"
                 >
                   {item.name}
                 </a>
@@ -119,15 +125,18 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Expands in a slightly larger rectangle, right-aligned */}
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="lg:hidden bg-[#E07B39] px-5 py-4 mt-2 rounded-lg w-60 fixed top-[60px] left-1/2 transform -translate-x-1/2 z-20">
           <ul className="space-y-3">
             {menuItems.map((item) => (
               <li key={item.name}>
                 <a
-                  href={item.href}
-                  className="block text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300"
+                  onClick={() => {
+                    scrollToSection(item.href);
+                    setIsMenuOpen(false); // Close the menu on item click
+                  }}
+                  className="block text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300 cursor-pointer"
                 >
                   {item.name}
                 </a>

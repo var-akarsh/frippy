@@ -10,7 +10,7 @@ const FeatureSection = () => {
           Happy Customers✨
         </h2>
       </div>
-      <div className="h-[20rem] rounded-md flex flex-col  dark:bg-[#E07B39] dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+      <div className="h-full rounded-md flex flex-col  dark:bg-[#E07B39] dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
         <InfiniteMovingCards
           items={testimonials}
           direction="right"
@@ -59,6 +59,5 @@ const testimonials = [
       "I bought my mobile online and needed a good quality case for it. I went with the Frippy cover, and it was delivered without any hassle. The fit is perfect, and the protection is just what I needed. Getting the phone and accessories on the same day was a great bonus! Great service and fast delivery – will definitely shop again!",
     name: "Arpan Dixit.",
     title: "No Hassle, Just Great Service",
-  }
-  
+  },
 ];
