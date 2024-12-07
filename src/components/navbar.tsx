@@ -32,7 +32,7 @@ const Navbar = () => {
   // Handle scroll direction
   const controlNavbar = () => {
     if (typeof window !== "undefined") {
-      if (window.scrollY < 10) {
+      if (window.scrollY < 10 || window.scrollY < lastScrollY) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -70,9 +70,9 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <div
+    <nav
       ref={menuRef}
-      className={`bg-[#E07B39] py-3 px-8 fixed top-0 w-full max-w-[60%] mx-auto z-10 rounded-full shadow-lg transition-transform duration-300 ${
+      className={`z-50 bg-[#E07B39] py-3 px-8 fixed top-0 w-full max-w-[60%] mx-auto rounded-full shadow-lg transition-transform duration-300 ${
         isVisible ? "translate-y-6" : "-translate-y-full"
       }`}
     >
@@ -127,7 +127,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-[#E07B39] px-5 py-4 mt-2 rounded-lg w-60 fixed top-[60px] left-1/2 transform -translate-x-1/2 z-20">
+        <div className="lg:hidden bg-[#E07B39] px-5 py-4 mt-2 rounded-lg w-60 fixed top-[60px] left-1/2 transform -translate-x-1/2 z-50">
           <ul className="space-y-3">
             {menuItems.map((item) => (
               <li key={item.name}>
@@ -145,7 +145,7 @@ const Navbar = () => {
           </ul>
         </div>
       )}
-    </div>
+    </nav>
   );
 };
 
