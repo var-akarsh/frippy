@@ -16,7 +16,7 @@ const HeroSection = () => {
         {/* Text Section */}
         <div className="flex flex-col gap-4 sm:justify-center sm:items-center md:justify-center md:items-center lg:gap-8">
           <p className="text-black font-gilroy-bold font-bold sm:text-3xl sm:text-left sm:text-5xl lg:text-6xl mt-10 leading-tight">
-            We Deliver <br /> We Install <br className="text-blue-500" />
+            We Deliver <br /> We Install <br />
             <span className="text-[#E07B39] inline-block relative">
               {/* Ensure consistent width for FlipWords to prevent flicker */}
               <span className="block w-full min-w-[140px]">
@@ -29,9 +29,10 @@ const HeroSection = () => {
             guards, back cover, and more.
           </p>
           <div className="flex justify-flex-start gap-4">
-            <Link href="/user_signup">
+            {/* Correct WhatsApp Link */}
+            <Link href="https://wa.me/919421626352?text=Hi%2C%20I%20want%20to%20place%20an%20order">
               <button className="py-2 px-6 bg-[#E07B39] rounded-md text-[#F5F5DC] font-gilroy-bold shadow-sm transition duration-200 hover:bg-[#d46c32] hover:text-white border-2 border-transparent hover:border-black sm:mt-10">
-                Get Started
+                Order on WhatsApp
               </button>
             </Link>
           </div>
