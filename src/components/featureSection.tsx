@@ -27,7 +27,7 @@ const testimonials = [
   {
     quote:
       "I ordered a mobile case, and the delivery agent was so polite and professional. As a bonus, I got a free cable protector with my order! I am really impressed with the service and product quality. Highly recommended!",
-    name: "Khushi S.",
+    name: "Khushi Srivastav.",
     title: "Great Service & Extra Perks",
   },
   {
