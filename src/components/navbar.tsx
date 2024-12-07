@@ -44,18 +44,21 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-[#E07B39] py-2 fixed top-0 w-full z-10 transition-transform duration-300 ${
+      className={`bg-[#E07B39] py-4 px-8 fixed top-6 w-full max-w-[90%] mx-auto z-10 rounded-full shadow-lg transition-transform duration-300 ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      <div className="mx-auto max-w-4xl w-full flex justify-between items-center px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-between items-center w-full">
+        {/* Logo */}
         <div className="flex items-center">
           <span className="text-white font-gilroy-bold text-2xl font-extrabold">
             Frippy
           </span>
+          {/* Adding margin-right to create space */}
+          <div className="mr-6"></div>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Hamburger Icon for Mobile */}
         <div className="lg:hidden">
           <button
             onClick={toggleMenu}
@@ -78,14 +81,14 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Menu items */}
+        {/* Menu Items for Larger Screens */}
         <div className="hidden lg:flex lg:items-center">
-          <ul className="flex space-x-6">
+          <ul className="flex space-x-5">
             {menuItems.map((item) => (
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="text-sm font-gilroy-bold text-[#fff] hover:text-black"
+                  className="text-sm font-gilroy-bold text-white hover:text-black transition-colors duration-300"
                 >
                   {item.name}
                 </a>
@@ -95,15 +98,15 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Expands in a slightly larger rectangle, right-aligned */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-[#E07B39] px-4 py-3">
+        <div className="lg:hidden bg-[#E07B39] px-5 py-4 mt-2 rounded-lg w-56 fixed top-[60px] right-6 z-20">
           <ul className="space-y-3">
             {menuItems.map((item) => (
               <li key={item.name}>
                 <a
                   href={item.href}
-                  className="block text-sm font-gilroy-bold text-white hover:text-black"
+                  className="block text-sm font-gilroy-bold text-white hover:text-black transition-colors duration-300"
                 >
                   {item.name}
                 </a>

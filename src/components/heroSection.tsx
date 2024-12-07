@@ -3,8 +3,8 @@ import React from "react";
 import Hero from "../../public/images/hero_1.png";
 import Image from "next/image";
 import Link from "next/link";
-import { FlipWords } from "./FlipWords";
-import { BackgroundBeamsWithCollision } from "./BackgroundBeamsWithCollision";
+import { FlipWords } from "./aceternity/FlipWords";
+import { BackgroundBeamsWithCollision } from "./aceternity/BackgroundBeamsWithCollision";
 
 const HeroSection = () => {
   // List of words to flip
