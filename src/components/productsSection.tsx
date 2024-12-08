@@ -54,7 +54,7 @@ function ProductsSection() {
   ];
 
   return (
-    <div className="bg-[#F5F5DC] py-14">
+    <div className="bg-[#F5F5DC] py-7">
       <div className="flex justify-center items-center">
         <h2 className="text-center text-4xl font-gilroy-bold text-black pb-5">
           <TypewriterEffectSmooth words={words} />
@@ -99,7 +99,7 @@ function ProductsSection() {
                       height={200}
                       src={active.src}
                       alt={active.title}
-                      className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
+                      className="w-full h-auto lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-contain"
                     />
                   </motion.div>
 
@@ -159,7 +159,7 @@ function ProductsSection() {
                 layoutId={`card-${card.title}-${id}`}
                 key={card.title}
                 onClick={() => setActive(card)}
-                className="p-4 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+                className="p-4 flex flex-col bg-[#fff] hover:bg-[#DCE4C9] dark:hover:bg-[#DCE4C9] rounded-xl cursor-pointer"
               >
                 <div className="flex gap-4 flex-col w-full">
                   <motion.div layoutId={`image-${card.title}-${id}`}>
@@ -168,7 +168,8 @@ function ProductsSection() {
                       height={100}
                       src={card.src}
                       alt={card.title}
-                      className="h-60 w-full rounded-lg object-cover object-top"
+                      className="h-60 w-full rounded-lg object-contain"
+                      
                     />
                   </motion.div>
                   <div className="flex justify-center items-center flex-col">
@@ -235,7 +236,7 @@ const cards = [
     description: "Only at Rs. 7̶4̶9̶ 349",
     title: "Iphone Paper Thin MagSafe Back Cover",
     src: paperBack,
-    ctaText: "Order Now",
+    ctaText: "Order",
     ctaLink: "https://wa.me/p/8715820151832929/919466533162",
     content: () => {
       return (
@@ -249,7 +250,7 @@ const cards = [
     description: "Only at Rs. 9̶9̶9̶ 599",
     title: "Iphone Metal Ring Premium Magsafe Back Cover",
     src: metalRing,
-    ctaText: "Order Now",
+    ctaText: "Order",
     ctaLink: "https://wa.me/p/9002196176499684/919466533162",
     content: () => {
       return (
@@ -264,7 +265,7 @@ const cards = [
     description: "Only at Rs. 9̶9̶9̶ 499",
     title: "Spigen Iphone Transparent Back Cover",
     src: spigen,
-    ctaText: "Order Now",
+    ctaText: "Order",
     ctaLink: "https://wa.me/p/28392816433638897/919466533162",
     content: () => {
       return (
@@ -278,7 +279,7 @@ const cards = [
     description: "Only at Rs. 4̶9̶9̶ 249",
     title: "Iphone Ultra Shine Edge to Edge Screen Glass Protector",
     src: iphoneTempered,
-    ctaText: "Order Now",
+    ctaText: "Order",
     ctaLink: "https://wa.me/p/9215589318474150/919466533162",
     content: () => {
       return (
@@ -292,7 +293,7 @@ const cards = [
     description: "Only at Rs. 6̶9̶9̶ 349",
     title: "Iphone 360° Privacy Screen Glass Protector",
     src: privacy,
-    ctaText: "Order Now",
+    ctaText: "Order",
     ctaLink: "https://wa.me/p/27616125851336167/919466533162",
     content: () => {
       return (
@@ -306,7 +307,7 @@ const cards = [
     description: "Only at Rs. 6̶9̶9̶ 349",
     title: "Iphone Matte Elegance Screen Glass Protector",
     src: matte,
-    ctaText: "Order Now",
+    ctaText: "Order",
     ctaLink: "https://wa.me/p/8900862156623726/919466533162",
     content: () => {
       return (
@@ -320,7 +321,7 @@ const cards = [
     description: "Only at Rs. 6̶9̶9̶ 349",
     title: "Samsung S22/S23 Optical Edge to Edge Screen Glass Protector",
     src: s23,
-    ctaText: "Order Now",
+    ctaText: "Order",
     ctaLink: "https://wa.me/c/919466533162",
     content: () => {
       return (
@@ -334,7 +335,7 @@ const cards = [
     description: "Only at Rs. 4̶9̶9̶ 249",
     title: "Android Edge to Edge Screen Glass Protector",
     src: androidTempered,
-    ctaText: "Order Now",
+    ctaText: "Order",
     ctaLink: "https://wa.me/p/9627233520626870/919466533162",
     content: () => {
       return (
