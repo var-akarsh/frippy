@@ -7,6 +7,8 @@ import FooterSection from "../components/footerSection";
 
 import "./globals.css";
 import IntroSection from "@/components/introSection";
+import { AnimatedTestimonials } from "@/components/aceternity/animated-testimonials";
+import { AnimatedTestimonialsDemo } from "@/components/productSection";
 
 export default function Home() {
   return (
@@ -17,6 +19,9 @@ export default function Home() {
       </div>
       <div id="why-frippy">
         <IntroSection />
+      </div>
+      <div id="products">
+        <AnimatedTestimonialsDemo />
       </div>
       <div id="testimonials">
         <FeatureSection />
