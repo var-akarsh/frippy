@@ -50,7 +50,7 @@ const testimonials = [
   },
   {
     quote:
-      "I ordered a mobile case, and I couldn't be happier! The same day delivery was a huge bonus. The MagSafe on my case works perfectly, and the installation was incredibly smooth. The quality of the products is top-notch. Highly recommend!",
+      "I ordered a mobile case, and I couldn't be happier! The same day delivery was a huge bonus. The MagSafe on my case works perfectly. The quality of the products is top-notch. Highly recommend!",
     name: "Vaibhav Raj",
     title: "Fast Delivery & Perfect Fit",
   },

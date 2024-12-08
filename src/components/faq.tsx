@@ -17,7 +17,7 @@ const FaqSection = () => {
     {
       question: "How is Frippy different from others?",
       answer:
-        "With Frippy, you don not need to commit to a purchase before trying the product. We offer a unique *try-before-you-pay* option—select a variety of products, try them out yourself, and pay only for the ones you choose at the time of delivery.",
+        "With Frippy, you do not need to commit to a purchase before trying the product. We offer a unique *try-before-you-pay* option—select a variety of products, try them out yourself, and pay only for the ones you choose at the time of delivery.",
     },
     {
       question: "Which areas does Frippy deliver to?",
