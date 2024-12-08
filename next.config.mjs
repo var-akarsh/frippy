@@ -1,19 +1,9 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {};
-
-// export default nextConfig;
-// next.config.mjs
-export default {
-    reactStrictMode: true,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     images: {
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: 'media.istockphoto.com',
-          pathname: '/**',
-        },
-      ],
+      domains: ['assets.aceternity.com'],  // Allow images from this domain
     },
   };
   
+  export default nextConfig;
   
