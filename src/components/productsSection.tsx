@@ -5,6 +5,15 @@ import Image from "next/image";
 import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import matte from "../../public/images/products/matte.jpg"
+import spigen from "../../public/images/products/spigen.jpg"
+import iphoneTempered from "../../public/images/products/iphoneTempered.jpeg"
+import privacy from "../../public/images/products/privacy.jpeg"
+import metalRing from "../../public/images/products/metalRing.png"
+import paperBack from "../../public/images/products/paperBack.png"
+import androidTempered from "../../public/images/products/androidTempered.png"
+import s23 from "../../public/images/products/s23.jpeg"
+
 function ProductsSection() {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
     null
@@ -225,7 +234,7 @@ const cards = [
   {
     description: "Only at Rs. 7̶4̶9̶ 349",
     title: "Iphone Paper Thin MagSafe Back Cover",
-    src: "https://assets.aceternity.com/demos/lana-del-rey.jpeg",
+    src: paperBack,
     ctaText: "Order Now",
     ctaLink: "https://wa.me/p/8715820151832929/919466533162",
     content: () => {
@@ -239,7 +248,7 @@ const cards = [
   {
     description: "Only at Rs. 9̶9̶9̶ 599",
     title: "Iphone Metal Ring Premium Magsafe Back Cover",
-    src: "https://assets.aceternity.com/demos/babbu-maan.jpeg",
+    src: metalRing,
     ctaText: "Order Now",
     ctaLink: "https://wa.me/p/9002196176499684/919466533162",
     content: () => {
@@ -254,7 +263,7 @@ const cards = [
   {
     description: "Only at Rs. 9̶9̶9̶ 499",
     title: "Spigen Iphone Transparent Back Cover",
-    src: "https://assets.aceternity.com/demos/metallica.jpeg",
+    src: spigen,
     ctaText: "Order Now",
     ctaLink: "https://wa.me/p/28392816433638897/919466533162",
     content: () => {
@@ -268,7 +277,7 @@ const cards = [
   {
     description: "Only at Rs. 4̶9̶9̶ 249",
     title: "Iphone Ultra Shine Edge to Edge Screen Glass Protector",
-    src: "https://assets.aceternity.com/demos/aap-ka-suroor.jpeg",
+    src: iphoneTempered,
     ctaText: "Order Now",
     ctaLink: "https://wa.me/p/9215589318474150/919466533162",
     content: () => {
@@ -282,7 +291,7 @@ const cards = [
   {
     description: "Only at Rs. 6̶9̶9̶ 349",
     title: "Iphone 360° Privacy Screen Glass Protector",
-    src: "https://assets.aceternity.com/demos/aap-ka-suroor.jpeg",
+    src: privacy,
     ctaText: "Order Now",
     ctaLink: "https://wa.me/p/27616125851336167/919466533162",
     content: () => {
@@ -296,7 +305,7 @@ const cards = [
   {
     description: "Only at Rs. 6̶9̶9̶ 349",
     title: "Iphone Matte Elegance Screen Glass Protector",
-    src: "/images/airbnb.png",
+    src: matte,
     ctaText: "Order Now",
     ctaLink: "https://wa.me/p/8900862156623726/919466533162",
     content: () => {
@@ -310,7 +319,7 @@ const cards = [
   {
     description: "Only at Rs. 6̶9̶9̶ 349",
     title: "Samsung S22/S23 Optical Edge to Edge Screen Glass Protector",
-    src: "https://assets.aceternity.com/demos/aap-ka-suroor.jpeg",
+    src: s23,
     ctaText: "Order Now",
     ctaLink: "https://wa.me/c/919466533162",
     content: () => {
@@ -324,7 +333,7 @@ const cards = [
   {
     description: "Only at Rs. 4̶9̶9̶ 249",
     title: "Android Edge to Edge Screen Glass Protector",
-    src: "https://assets.aceternity.com/demos/aap-ka-suroor.jpeg",
+    src: androidTempered,
     ctaText: "Order Now",
     ctaLink: "https://wa.me/p/9627233520626870/919466533162",
     content: () => {
