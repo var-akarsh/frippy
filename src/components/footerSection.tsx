@@ -43,7 +43,7 @@ const FooterSection = () => {
             </div>
             <div className="px-5 py-2">
               <a
-                href="mailto:fripy@gmail.com"
+                href="mailto:connectfrippy@gmail.com"
                 className="text-base leading-6 text-gray-300 hover:text-gray-500"
               >
                 Contact
