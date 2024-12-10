@@ -151,7 +151,7 @@ function ProductsSection() {
             ) : null}
           </AnimatePresence>
 
-          <ul className="mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-8">
+          <ul className="mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-2 p-4 md:p-8">
             {" "}
             {/* Adjusted grid layout */}
             {cards.map((card, index) => (
