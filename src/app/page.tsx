@@ -13,7 +13,7 @@ import ProductsSection from "@/components/productsSection";
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <div
         id="home"
         className="h-screen mx-auto bg-[#fff] flex justify-center pb-2 items-center relative"
