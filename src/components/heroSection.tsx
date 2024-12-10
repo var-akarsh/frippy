@@ -12,10 +12,10 @@ const HeroSection = () => {
 
   return (
     <BackgroundBeamsWithCollision>
-      <div className="h-screen flex flex-col lg:flex-row justify-center lg:justify-between items-center gap-5 mt-8 px-4 lg:px-16">
+      <div className="h-screen flex flex-col md:flex-row lg:flex-row justify-center lg:justify-between items-center gap-5 mt-8 px-4 lg:px-16">
         {/* Text Section */}
         <div className="flex flex-col gap-4 sm:justify-center sm:items-center md:justify-center md:items-center lg:gap-8">
-          <p className="text-black font-gilroy-bold font-bold sm:text-3xl sm:text-left sm:text-5xl lg:text-6xl mt-10 leading-tight">
+          <p className="text-black font-gilroy-bold font-bold sm:text-3xl sm:text-left sm:text-5xl md:text-6xl lg:text-6xl mt-10 leading-tight">
             We Deliver <br /> We Install <br />
             <span className="text-[#E07B39] inline-block relative">
               {/* Ensure consistent width for FlipWords to prevent flicker */}
@@ -39,9 +39,9 @@ const HeroSection = () => {
         </div>
 
         {/* Image Section */}
-        <div className="w-full lg:w-auto">
+        <div className="w-full md:w-auto lg:w-auto">
           <Image
-            className="hidden sm:hidden lg:block lg:ml-16 w-[320px] h-[320px] lg:w-[420px] lg:h-[400px] object-cover"
+            className="hidden sm:hidden md:block lg:block lg:ml-16 w-[320px] h-[320px] lg:w-[420px] lg:h-[400px] object-cover"
             src={Hero}
             alt="Hero Image"
           />
