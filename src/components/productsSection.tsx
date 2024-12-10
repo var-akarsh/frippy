@@ -56,7 +56,7 @@ function ProductsSection() {
   return (
     <div className="bg-[#F5F5DC] py-7">
       <div className="flex justify-center items-center">
-        <h2 className="text-center text-4xl font-gilroy-bold text-black pb-5">
+        <h2 className="text-center text-5xl font-gilroy-bold text-black pb-5">
           <TypewriterEffectSmooth words={words} />
           <AnimatePresence>
             {active && typeof active === "object" && (
