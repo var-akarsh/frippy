@@ -3,6 +3,7 @@ import { Grid2, Stack, Typography } from "@mui/material";
 import myImage from "../../public/images/check.png";
 import flexibleTiming from "../../public/images/happy-hour.png";
 import Interaction from "../../public/images/interactive.png";
+import trybeforepay from "../../public/images/research.png";
 import yus from "../../public/images/whyUs.png";
 import Image from "next/image";
 import "./divider.css";
@@ -10,23 +11,22 @@ import "./divider.css";
 const IntroSection = () => {
   const items = [
     {
-      title: "Same-Day Delivery",
+      title: "Free Same-Day Delivery",
       subtitle:
         "Receive your mobile accessories at your doorstep on the same day for maximum convenience.",
       image: myImage,
     },
     {
+      "title": "Try Before You Pay",
+      "subtitle": "Order multiple products, try them upon delivery, and pay only for the ones you decide to keep. Experience hassle-free shopping with Frippy.",
+      "image": trybeforepay
+    },    
+    {
       title: "Doorstep Installation",
       subtitle:
         "Our experts will install screen protectors right at your home, ensuring a perfect fit and bubble-free application.",
       image: flexibleTiming,
-    },
-    {
-      title: "Affordable Pricing",
-      subtitle:
-        "Enjoy top-notch mobile accessories at budget-friendly prices, without compromising on quality.",
-      image: Interaction,
-    },
+    }
   ];
 
   const leftItem = {
@@ -152,13 +152,11 @@ const IntroSection = () => {
                 letterSpacing: "0.01em",
               }}
             >
-              At Frippy, we make protecting and personalizing your smartphone
-              simple and hassle-free. Our mission is to provide top-quality
-              screen protectors and back cases delivered right to your doorstep,
-              saving you time and effort. With Frippy, you get trusted products,
-              reliable service, and the convenience of never having to leave
-              your home. Choose Frippy for a seamless mobile accessory shopping
-              experience!
+              At Frippy, we make protecting and personalizing your smartphone easy.
+              Our mission is to deliver top-quality screen protectors and back cases to
+              your doorstep, with the added convenience of our try-before-you-pay option.
+              Enjoy trusted products, reliable service, and a seamless shopping experience—all 
+              without leaving your home
             </Typography>
           </Stack>
         </Stack>
