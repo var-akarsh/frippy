@@ -38,5 +38,16 @@ export function AnimatedTestimonialsDemo() {
       src: "https://media.istockphoto.com/id/1326417862/photo/young-woman-laughing-while-relaxing-at-home.jpg?s=612x612&w=0&k=20&c=cd8e6RBGOe4b8a8vTcKW0Jo9JONv1bKSMTKcxaCra8c=",
     },
   ];
-  return <AnimatedTestimonials testimonials={testimonials} />;
+  return (
+    <div
+      className="max-w-7xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-8 py-20"
+    >
+      <div className="flex justify-center items-center">
+        <h2 className="text-center text-5xl font-gilroy-bold text-black">
+          Happy Customers✨
+        </h2>
+      </div>
+      <AnimatedTestimonials testimonials={testimonials} autoplay />
+    </div>
+  );
 }
