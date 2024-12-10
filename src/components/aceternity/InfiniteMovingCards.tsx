@@ -76,6 +76,7 @@ export const InfiniteMovingCards = ({
         "scroller relative z-20  max-w-8xl overflow-hidden",
         className
       )}
+      style={{ overflowX: "auto", scrollbarWidth: "none" }} // Add this line
     >
       <ul
         ref={scrollerRef}
@@ -84,6 +85,7 @@ export const InfiniteMovingCards = ({
           start && "animate-scroll ",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
+        style={{ display: "flex", overflowX: "auto", scrollbarWidth: "none" }} // Add this line
       >
         {items.map((item, idx) => (
           <li
