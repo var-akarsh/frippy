@@ -8,8 +8,8 @@ import FooterSection from "../components/footerSection";
 import { AnimatedTestimonialsDemo } from "@/components/AnimatedTestimonialsMain";
 import IntroSection from "@/components/introSection";
 import { AnimatedTestimonials } from "@/components/aceternity/animated-testimonials";
-import { AnimatedTestimonialsDemo } from "@/components/AnimatedTestimonialsMain";
 import ProductsSection from "@/components/productsSection";
+import "./globals.css";
 
 export default function Home() {
   return (
