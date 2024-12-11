@@ -99,6 +99,8 @@ function ProductsSection() {
                       height={200}
                       src={active.src}
                       alt={active.title}
+                      loading="lazy" // if needed can remove 
+
                       className="w-full h-auto lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-contain"
                     />
                   </motion.div>
