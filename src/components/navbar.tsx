@@ -113,12 +113,12 @@ const Navbar = () => {
           <ul className="flex space-x-5">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <a
+                <button
                   onClick={() => scrollToSection(item.href)}
                   className="text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300 cursor-pointer"
                 >
                   {item.name}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
