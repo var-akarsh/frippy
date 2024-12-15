@@ -106,7 +106,7 @@ const FooterSection = () => {
                 ></path>
               </svg>
             </a>
-            <a href="#" className="text-gray-400 hover:text-gray-500">
+            <a href="https://x.com/frippy_in" className="text-gray-400 hover:text-gray-500">
               <span className="sr-only">X</span>
               <svg
                 className="w-6 h-6"
