@@ -62,6 +62,7 @@ const FooterSection = () => {
           <div className="flex justify-center mt-8 space-x-6">
             <a
               href="https://wa.me/919466533162"
+              target="blank"
               className="text-gray-400 hover:text-gray-500"
             >
               <span className="sr-only">Whatsapp</span>
@@ -90,6 +91,7 @@ const FooterSection = () => {
             </a>
             <a
               href="https://www.instagram.com/frippy.in/"
+              target="blank"
               className="text-gray-400 hover:text-gray-500"
             >
               <span className="sr-only">Instagram</span>
@@ -106,7 +108,7 @@ const FooterSection = () => {
                 ></path>
               </svg>
             </a>
-            <a href="https://x.com/frippy_in" className="text-gray-400 hover:text-gray-500">
+            <a href="https://x.com/frippy_in" target="blank" className="text-gray-400 hover:text-gray-500">
               <span className="sr-only">X</span>
               <svg
                 className="w-6 h-6"

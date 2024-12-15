@@ -4,11 +4,19 @@ import Hero from "../../public/images/hero_1.png";
 import Image from "next/image";
 import Link from "next/link";
 import { FlipWords } from "./aceternity/FlipWords";
+import { useEffect, useState } from "react";
 import { BackgroundBeamsWithCollision } from "./aceternity/BackgroundBeamsWithCollision";
 
 const HeroSection = () => {
   // List of words to flip
   const words = ["You Relax", "Order Now"];
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
 
   return (
     <BackgroundBeamsWithCollision>
