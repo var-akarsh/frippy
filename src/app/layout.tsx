@@ -115,22 +115,22 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Product",
+              "@type": "Organization",
               "name": "Frippy",
               "url": "https://frippy.in",
-              "logo": "/images/logo.png", 
+              "logo": "/images/logo.png",
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+91-9466533162", 
-                "contactType": "Customer Service",
+                "telephone": "+91-9466533162",
+                "contactType": "Customer Service"
               },
               "sameAs": [
                 "https://www.instagram.com/frippy.in/", 
-                // "https://twitter.com/frippy_in",
               ],
             }),
           }}
         />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon "/>
       </Head>
       <body className={inter.className}>{children}</body>
     </html>
