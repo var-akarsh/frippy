@@ -2,15 +2,15 @@
  
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
  
 type Testimonial = {
   quote: string;
   name: string;
   designation: string;
-  src: string;
-};
+  src: string | StaticImageData;
+} 
 export const AnimatedTestimonials = ({
   testimonials,
   autoplay = false,
@@ -50,7 +50,7 @@ export const AnimatedTestimonials = ({
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
-                  key={testimonial.src}
+                  key={index}
                   initial={{
                     opacity: 0,
                     scale: 0.9,
