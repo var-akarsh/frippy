@@ -13,6 +13,7 @@ import metalRing from "../../public/images/products/metalRing.png"
 import paperBack from "../../public/images/products/paperBack.png"
 import androidTempered from "../../public/images/products/androidTempered.png"
 import s23 from "../../public/images/products/s23.jpeg"
+import silicone from "../../public/images/products/silicone.jpeg"
 
 function ProductsSection() {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
@@ -234,6 +235,20 @@ export const CloseIcon = () => {
 };
 
 const cards = [
+  {
+    description: "Only at Rs. 7̶4̶9̶ 349",
+    title: "Iphone Silicone Back Cover",
+    src: silicone,
+    ctaText: "Order",
+    ctaLink: "https://wa.me/p/8681483901962676/919466533162",
+    content: () => {
+      return (
+        <p>
+          A high-quality silicone back case designed to provide a premium feel and perfect protection for your iPhone.
+        </p>
+      );
+    },
+  },
   {
     description: "Only at Rs. 7̶4̶9̶ 349",
     title: "Iphone Paper Thin MagSafe Back Cover",
