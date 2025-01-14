@@ -6,13 +6,18 @@ import { cn } from "@/lib/utils";
 import CryptoJS from "crypto-js"; 
 
 const SECRET_KEY = "FrippyIsNice"; 
+interface SelectedType {
+  [key: string]: string;
+}
+
+
 
 export function AddressForm({
   selected,
   setSelected,
   handleSubmit
 }: {
-  selected: any;
+  selected: SelectedType;
   setSelected: any;
   handleSubmit: (e: React.FormEvent) => void;
 }) {
@@ -98,7 +103,7 @@ export function AddressForm({
             <Label htmlFor="name">First name</Label>
             <Input
               id="firstname"
-              value={selected.firstname}
+              value={selected.name}
               placeholder="Bruce"
               type="text"
               onChange={handleInputChange}
