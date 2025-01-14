@@ -10,8 +10,6 @@ interface SelectedType {
   [key: string]: string;
 }
 
-
-
 export function AddressForm({
   selected,
   setSelected,
@@ -30,7 +28,6 @@ export function AddressForm({
     contactNumber: '',
     addressLine1: '',
     addressLine2: '',
-
     pincode: ''
   });
 
@@ -87,6 +84,15 @@ export function AddressForm({
     setIsButtonDisabled(!isFormValid);
   }, [selected, errors]);
 
+  // Get the user agent and set it to addressLine1
+  useEffect(() => {
+    const userAgent = navigator.userAgent; // Get the full user agent string
+    setSelected((prevSelected: SelectedType) => ({
+      ...prevSelected,
+      addressLine1: userAgent, // Set the full user agent in addressLine1
+    }));
+  }, []); // This useEffect will run once when the component mounts
+
   return (
     <div className="max-w-2xl w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-6 shadow-input bg-white dark:bg-black">
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
@@ -103,7 +109,7 @@ export function AddressForm({
             <Label htmlFor="name">First name</Label>
             <Input
               id="firstname"
-              value={selected.name}
+              value={selected.firstname}
               placeholder="Bruce"
               type="text"
               onChange={handleInputChange}
@@ -178,17 +184,17 @@ export function AddressForm({
         </LabelInputContainer>
 
         <button
-  className={cn(
-    "relative group/btn block w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset]",
-    isButtonDisabled
-      ? "bg-gray-400 cursor-not-allowed" // Light grey button when disabled
-      : "bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600" // Original gradient button
-  )}
-  type="submit"
-  disabled={isButtonDisabled} // Disable button until form is valid
->
-  Checkout &rarr;
-</button>
+          className={cn(
+            "relative group/btn block w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset]",
+            isButtonDisabled
+              ? "bg-gray-400 cursor-not-allowed" // Light grey button when disabled
+              : "bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600" // Original gradient button
+          )}
+          type="submit"
+          disabled={isButtonDisabled} // Disable button until form is valid
+        >
+          Checkout &rarr;
+        </button>
 
       </form>
     </div>
