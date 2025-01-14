@@ -11,7 +11,6 @@ interface SelectedType {
 }
 
 
-
 export function AddressForm({
   selected,
   setSelected,
@@ -24,7 +23,7 @@ export function AddressForm({
 
   // State for validation errors
   const [errors, setErrors] = useState({
-    firstname: '',
+    name: '',
     lastname: '',
     email: '',
     contactNumber: '',
@@ -55,7 +54,7 @@ export function AddressForm({
   const validateField = (field: string, value: string) => {
     let error = '';
     switch (field) {
-      case 'firstname':
+      case 'name':
       case 'lastname':
         if (!value.trim()) error = 'This field is required';
         break;
@@ -79,16 +78,18 @@ export function AddressForm({
     setErrors((prevErrors) => ({ ...prevErrors, [field]: error }));
   };
 
-  // Check if all required fields are valid and if there are no errors
-  useEffect(() => {
-    const isFormValid = Object.values(selected).every(value => value.trim()) &&
-      !Object.values(errors).some(error => error !== '');
-    
-    setIsButtonDisabled(!isFormValid);
-  }, [selected, errors]);
+useEffect(() => {
+  const isFormValid = Object.entries(selected)
+    .filter(([key]) => key !== 'email' && key!=="addressLine2")
+    .every(([_, value]) => value.trim()) &&
+    !Object.values(errors).some(error => error !== '');
+
+  setIsButtonDisabled(!isFormValid);
+}, [selected, errors]);
+
 
   return (
-    <div className="max-w-2xl w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-6 shadow-input bg-white dark:bg-black">
+    <div className=" max-w-2xl w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-6 shadow-input bg-white dark:bg-black">
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
         Your place <span className="font-normal line-through">or mine</span> ?
       </h2>
@@ -100,18 +101,18 @@ export function AddressForm({
       <form className="my-4" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-2">
           <LabelInputContainer>
-            <Label htmlFor="name">First name</Label>
+            <Label className="required-label" htmlFor="firstname" >First Name</Label> {/* Required field */}
             <Input
-              id="firstname"
+              id="name"
               value={selected.name}
               placeholder="Bruce"
               type="text"
               onChange={handleInputChange}
             />
-            {errors.firstname && <p className="text-red-500 text-sm">{errors.firstname}</p>}
+            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
           </LabelInputContainer>
           <LabelInputContainer>
-            <Label htmlFor="lastname">Last name</Label>
+            <Label className="required-label" htmlFor="lastname" >Last Name</Label> {/* Required field */}
             <Input
               id="lastname"
               value={selected.lastname}
@@ -123,7 +124,7 @@ export function AddressForm({
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-2">
-          <Label htmlFor="email">Email Address (Optional)</Label>
+          <Label  htmlFor="email">Email Address (Optional)</Label>
           <Input
             id="email"
             value={selected.email}
@@ -134,7 +135,7 @@ export function AddressForm({
           {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
         </LabelInputContainer>
         <LabelInputContainer className="mb-2">
-          <Label htmlFor="contactNumber">Contact Number</Label>
+          <Label className="required-label" htmlFor="contactNumber" >Contact Number</Label> {/* Required field */}
           <Input
             id="contactNumber"
             value={selected.contactNumber}
@@ -145,7 +146,7 @@ export function AddressForm({
           {errors.contactNumber && <p className="text-red-500 text-sm">{errors.contactNumber}</p>}
         </LabelInputContainer>
         <LabelInputContainer className="mb-3">
-          <Label htmlFor="addressLine1">Address Line 1</Label>
+          <Label className="required-label" htmlFor="addressLine1" >Address Line 1</Label> {/* Required field */}
           <Input
             id="addressLine1"
             value={selected.addressLine1}
@@ -166,7 +167,7 @@ export function AddressForm({
           />
         </LabelInputContainer>
         <LabelInputContainer className="mb-2">
-          <Label htmlFor="pincode">Pincode</Label>
+          <Label className="required-label" htmlFor="pincode" >Pincode</Label> {/* Required field */}
           <Input
             id="pincode"
             value={selected.pincode}
@@ -178,17 +179,17 @@ export function AddressForm({
         </LabelInputContainer>
 
         <button
-  className={cn(
-    "relative group/btn block w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset]",
-    isButtonDisabled
-      ? "bg-gray-400 cursor-not-allowed" // Light grey button when disabled
-      : "bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600" // Original gradient button
-  )}
-  type="submit"
-  disabled={isButtonDisabled} // Disable button until form is valid
->
-  Checkout &rarr;
-</button>
+          className={cn(
+            "relative group/btn block w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset]",
+            isButtonDisabled
+              ? "bg-gray-400 cursor-not-allowed" // Light grey button when disabled
+              : "bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600" // Original gradient button
+          )}
+          type="submit"
+          disabled={isButtonDisabled} // Disable button until form is valid
+        >
+          Checkout &rarr;
+        </button>
 
       </form>
     </div>

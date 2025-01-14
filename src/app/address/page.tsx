@@ -2,6 +2,8 @@
 import { AddressForm } from '@/components/ui/addressinput';
 import React, { useState, useEffect } from 'react';
 import CryptoJS from "crypto-js"; 
+import Navbar from '@/components/navbar';
+import FooterSection from '@/components/footerSection';
 
 const SECRET_KEY = "FrippyIsNice"; 
 
@@ -41,13 +43,21 @@ const AddressPage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-[#F5F5DC] py-8">
+    <>
+<div
+            className="bg-[#fff] flex justify-center items-center relative"
+          >
+            <Navbar />
+            </div>
+    <div className="flex flex-col justify-center items-center min-h-screen bg-[#F5F5DC] py-24">
       <AddressForm
         selected={selected}
         setSelected={setSelected}
         handleSubmit={handleSubmit}
       />
     </div>
+    <FooterSection />
+    </>
   );
 };
 
