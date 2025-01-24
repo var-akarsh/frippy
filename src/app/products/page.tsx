@@ -4,6 +4,7 @@ import ProductList from "../../components/productlist";
 import FooterSection from "@/components/footerSection";
 import Navbar from "@/components/navbar";
 import Dropdown from "../../components/ui/dropdown"; // Import the Dropdown component
+import { Modal, ModalTrigger } from "@/components/aceternity/animated-modal";
 
 type Product = {
   id: string;
@@ -88,56 +89,69 @@ const ProductPage = () => {
 
   return (
     <>
-      <div className="bg-[#fff] flex justify-center items-center relative">
-        <Navbar />
-      </div>
+     <div className="bg-[#fff] flex justify-center items-center relative">
+  <Navbar />
+</div>
 
-      <div
-        className="h-screen flex flex-col py-32 items-left "
-        style={{ backgroundColor: "#F5F5DC" }}
-      >
-        <div className="h-auto flex flex-col md:flex-row lg:flex-row justify-start items-start gap-5 mt-8 px-4 lg:px-16">
-          <div className="flex flex-col gap-4 sm:justify-start sm:items-start md:justify-start md:items-start lg:gap-4">
-            {/* Brand section */}
-            <p className="text-black font-gilroy-bold font-bold sm:text-2xl sm:text-left md:text-2xl lg:text-2xl leading-tight">
-              Brand
-              <span className="text-[#E07B39] inline-block relative">
-                <span className="block w-full min-w-[140px]"></span>
-              </span>
-            </p>
+<div
+  className="h-screen flex flex-col py-32 items-left"
+  style={{ backgroundColor: "#fff" }}
+>
+  <div className="h-auto flex flex-col md:flex-row lg:flex-row justify-start items-start gap-5 mt-8 px-4 lg:px-16">
+    <div className="flex flex-col gap-4 sm:justify-start sm:items-start md:justify-start md:items-start lg:gap-4">
+      {/* Brand section */}
+      <p className="text-black font-gilroy-bold font-bold sm:text-2xl sm:text-left md:text-2xl lg:text-2xl leading-tight">
+        Brand
+        <span className="text-[#E07B39] inline-block relative">
+          <span className="block w-full min-w-[140px]"></span>
+        </span>
+      </p>
 
-            {/* Brand Dropdown component */}
-            <Dropdown
-              label="Choose your brand"
-              options={brands}
-              selectedOption={selectedBrand}
-              onSelect={handleBrandSelect}
-            />
+      {/* Brand Dropdown component */}
+      <Dropdown
+        label="Choose your brand"
+        options={brands}
+        selectedOption={selectedBrand}
+        onSelect={handleBrandSelect}
+      />
 
-            {/* Conditionally render the Model dropdown after a brand is selected */}
-            {selectedBrand && (
-              <>
-                <p className="text-black font-gilroy-bold font-bold sm:text-2xl sm:text-left md:text-2xl lg:text-2xl leading-tight mt-4">
-                  Model
-                  <span className="text-[#E07B39] inline-block relative">
-                    <span className="block w-full min-w-[140px]"></span>
-                  </span>
-                </p>
+      {/* Conditionally render the Model dropdown after a brand is selected */}
+      {selectedBrand && (
+        <>
+          <p className="text-black font-gilroy-bold font-bold sm:text-2xl sm:text-left md:text-2xl lg:text-2xl leading-tight mt-4">
+            Model
+            <span className="text-[#E07B39] inline-block relative">
+              <span className="block w-full min-w-[140px]"></span>
+            </span>
+          </p>
 
-                {/* Model Dropdown component */}
-                <Dropdown
-                  label="Choose your model"
-                  options={models}
-                  selectedOption={selectedModel}
-                  onSelect={handleModelSelect}
-                />
-              </>
-            )}
+          {/* Model Dropdown component */}
+          <Dropdown
+            label="Choose your model"
+            options={models}
+            selectedOption={selectedModel}
+            onSelect={handleModelSelect}
+          />
+        </>
+      )}
+
+{selectedBrand && selectedModel && (
+      <div className="mt-6">
+      <Modal>
+          <ModalTrigger className="bg-[#E07B39] dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
+          <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
+            Find It!
+          </span>
+          <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
+          🔍
           </div>
-        </div>
-      </div>
+        </ModalTrigger>
+        </Modal>
+      </div>)}
+    </div>
+  </div>
+</div>
 
-      <FooterSection />
     </>
   );
 };
