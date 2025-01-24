@@ -13,9 +13,9 @@ const quotes = [
   "The real problem is not whether machines think but whether men do. — B.F. Skinner",
   "The great myth of our times is that technology is communication. — Libby Larsen",
   "I do not fear computers. I fear the lack of them. — Isaac Asimov",
-  "Just because something doesn’t do what you planned it to do doesn’t mean it’s useless. — Thomas Edison",
+  "Just because something doesn't do what you planned it to do doesn't mean it's useless. — Thomas Edison",
   "The mobile phone acts as a cursor to connect the digital and physical. — Marissa Meyer",
-  "Technology is nothing. What's important is that you have faith in people, that they’re basically good and smart, and if you give them tools, they’ll do wonderful things with them. — Steve Jobs",
+  "Technology is nothing. What's important is that you have faith in people, that they're basically good and smart, and if you give them tools, they'll do wonderful things with them. — Steve Jobs",
   "The purpose of technology is not to confuse the brain but to serve the body. — William S. Burroughs",
 ];
 
