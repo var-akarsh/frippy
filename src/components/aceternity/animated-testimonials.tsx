@@ -1,10 +1,14 @@
 "use client";
  
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+// import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import { MdArrowRightAlt } from "react-icons/md";
+
 import { motion, AnimatePresence } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
- 
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
+
 type Testimonial = {
   quote: string;
   name: string;
@@ -148,13 +152,14 @@ export const AnimatedTestimonials = ({
               onClick={handlePrev}
               className="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button"
             >
-              <IconArrowLeft className="h-5 w-5 text-black dark:text-neutral-400 group-hover/button:rotate-12 transition-transform duration-300" />
+              <FaArrowLeftLong 
+              className="h-5 w-5 text-black dark:text-neutral-400 group-hover/button:rotate-12 transition-transform duration-300" />
             </button>
             <button
               onClick={handleNext}
               className="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button"
             >
-              <IconArrowRight className="h-5 w-5 text-black dark:text-neutral-400 group-hover/button:-rotate-12 transition-transform duration-300" />
+              <MdArrowRightAlt className="h-5 w-5 text-black dark:text-neutral-400 group-hover/button:-rotate-12 transition-transform duration-300" />
             </button>
           </div>
         </div>
