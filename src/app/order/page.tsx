@@ -60,10 +60,10 @@ const ProductPage = () => {
       <section className="py-24 relative">
         <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
           <h2 className="font-manrope font-bold text-4xl leading-10 text-black text-center">
-            We're prepping your box!
+            We&apos;re prepping your box!
           </h2>
           <p className="mt-4 font-normal text-lg leading-8 text-gray-500 mb-11 text-center">
-            Frippy’s got you covered - Your order is successfully placed and our
+            Frippy has got you covered - Your order is successfully placed and our
             executive will contact you.
           </p>
           <div className="main-box border border-gray-200 rounded-xl pt-6 max-w-xl max-lg:mx-auto lg:max-w-full">
