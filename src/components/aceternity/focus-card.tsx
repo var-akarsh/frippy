@@ -48,10 +48,10 @@ export const Card = React.memo(
 
       <div className="absolute bottom-4 left-4 flex items-center space-x-2 z-10">
         <div className="text-sm text-white line-through">
-          {card.originalPrice}
+        ₹{card.originalPrice}
         </div>
         <div className="text-xl text-white font-semibold">
-          {card.price}
+        ₹{card.price}
         </div>
       </div>
     </div>

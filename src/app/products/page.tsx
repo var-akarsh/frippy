@@ -14,6 +14,7 @@ import privacy from "../../../public/images/products/privacy.jpeg";
 import s23 from "../../../public/images/products/s23.jpeg";
 import silicone from "../../../public/images/products/silicone.jpeg";
 import spigen from "../../../public/images/products/spigen.jpg";
+import ProductsDisplay from "@/components/ui/productsDisplay";
 
 type Product = {
   id: string;
@@ -29,16 +30,16 @@ type Option = {
 
 const cards = [
   {
-    price: "₹349",
+    price: "349",
     title: "Iphone Silicone Back Cover",
     src: silicone,
-    originalPrice: "₹699",
+    originalPrice: "699",
   },
   {
-    price: "₹349",
+    price: "349",
     title: "Iphone Paper Thin MagSafe Back Cover",
     src: paperBack,
-    originalPrice: "₹699",
+    originalPrice: "699",
   },
   {
     price: "599",
@@ -47,40 +48,40 @@ const cards = [
     originalPrice: "1199",
   },
   {
-    price: "₹499",
+    price: "499",
     title: "Spigen Iphone Transparent Back Cover",
     src: spigen,
-    originalPrice: "₹999",
+    originalPrice: "999",
   },
   {
     price: "249",
     title: "Iphone Ultra Shine Edge to Edge Screen Glass Protector",
     src: iphoneTempered,
-    originalPrice: "₹499",
+    originalPrice: "499",
   },
   {
-    price: "₹349",
+    price: "349",
     title: "Iphone 360° Privacy Screen Glass Protector",
     src: privacy,
-    originalPrice: "₹699",
+    originalPrice: "699",
   },
   {
-    price: "₹349",
+    price: "349",
     title: "Iphone Matte Elegance Screen Glass Protector",
     src: matte,
-    originalPrice: "₹699",
+    originalPrice: "699",
   },
   {
-    price: "₹349",
+    price: "349",
     title: "Samsung S22/S23 Optical Edge to Edge Screen Glass Protector",
     src: s23,
-    originalPrice: "₹699",
+    originalPrice: "699",
   },
   {
-    price: "₹249",
+    price: "249",
     title: "Android Edge to Edge Screen Glass Protector",
     src: androidTempered,
-    originalPrice: "₹499",
+    originalPrice: "499",
   },
 ];
 
@@ -189,7 +190,8 @@ const ProductPage = () => {
           </div>
         </div>
         <div className="mt-16">
-          {showProductCards && <FocusCards cards={cards} />}
+          {/* {showProductCards && <FocusCards cards={cards} />} */}
+          {showProductCards && <ProductsDisplay cards={cards} />}
         </div>
       </div>
     </>

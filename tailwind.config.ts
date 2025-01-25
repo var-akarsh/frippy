@@ -36,7 +36,9 @@ const config: Config = {
       },
     },
     extend: {
-      // Merging screen settings from both configurations
+      gridTemplateRows: {
+        '[auto,auto,1fr]': 'auto auto 1fr',
+      },
       screens: {
         sm: { max: "640px" },
         md: { min: "641px", max: "1023px" },

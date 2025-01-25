@@ -4,6 +4,7 @@ import { Label } from "../aceternity/label";
 import { Input } from "../aceternity/input";
 import { cn } from "@/lib/utils";
 import CryptoJS from "crypto-js"; 
+import { useRouter } from "next/navigation";
 
 const SECRET_KEY = "FrippyIsNice"; 
 interface SelectedType {
@@ -32,7 +33,10 @@ export function AddressForm({
 
     pincode: ''
   });
-
+  const router = useRouter()
+  const handleCheckout = ()=>{
+    router.push('/order')
+  }
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const saveToLocalStorage = (data: any) => {
@@ -187,6 +191,7 @@ useEffect(() => {
           )}
           type="submit"
           disabled={isButtonDisabled} // Disable button until form is valid
+          onClick={handleCheckout}
         >
           Checkout &rarr;
         </button>
