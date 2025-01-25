@@ -15,6 +15,14 @@ import s23 from "../../../public/images/products/s23.jpeg";
 import silicone from "../../../public/images/products/silicone.jpeg";
 import spigen from "../../../public/images/products/spigen.jpg";
 import ProductsDisplay from "@/components/ui/productsDisplay";
+import { AnimatedTooltip } from "@/components/aceternity/animated-tooltip";
+
+import all from "../../../public/images/quickfilters/All.png";
+import screenprotectors from "../../../public/images/quickfilters/ScreenProtectors.png";
+
+import mobilecases from "../../../public/images/quickfilters/MOBILECASE.png";
+
+
 
 type Product = {
   id: string;
@@ -85,11 +93,40 @@ const cards = [
   },
 ];
 
+// Define your filter options
+const quickFilters = [
+  {
+    id: 0,
+    name: "All Products",
+    image:
+      all,
+  },
+  {
+    id: 1,
+    name: "Screen Protectors",
+    image:
+     screenprotectors
+  },
+  {
+    id: 2,
+    name: "Mobile Cases",
+    image:
+      mobilecases
+  },
+  
+];
+
 const ProductPage = () => {
+  const [selectedFilter, setSelectedFilter] = useState("");
+
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedBrand, setSelectedBrand] = useState<string>("");
   const [selectedModel, setSelectedModel] = useState<string>("");
   const [showProductCards, setShowProductCards] = useState<boolean>(false); // New state for showing the cards
+
+  const handleFilterClick = (filter: any) => {
+    setSelectedFilter(filter);
+  };
 
   const productTypes: Option[] = [
     { value: "mobile", label: "Mobile" },
@@ -153,7 +190,7 @@ const ProductPage = () => {
               />
             </div>
 
-            {selectedBrand && (
+            {
               <div className="flex flex-col">
                 <p className="text-black font-gilroy-bold font-bold sm:text-2xl sm:text-left md:text-2xl lg:text-2xl leading-tight">
                   Model
@@ -169,7 +206,7 @@ const ProductPage = () => {
                   onSelect={handleModelSelect}
                 />
               </div>
-            )}
+            }
             {selectedBrand && selectedModel && (
               <div
                 className="mt-6"
@@ -190,7 +227,12 @@ const ProductPage = () => {
           </div>
         </div>
         <div className="mt-16">
-          {/* {showProductCards && <FocusCards cards={cards} />} */}
+          <div className="flex justify-center space-x-4 mb-8">
+            <div className="flex flex-row items-center justify-center mb-10 w-full">
+              <AnimatedTooltip items={quickFilters} />
+            </div>
+          </div>
+
           {showProductCards && <ProductsDisplay cards={cards} />}
         </div>
       </div>
