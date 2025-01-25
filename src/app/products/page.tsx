@@ -22,8 +22,6 @@ import screenprotectors from "../../../public/images/quickfilters/ScreenProtecto
 
 import mobilecases from "../../../public/images/quickfilters/MOBILECASE.png";
 
-
-
 type Product = {
   id: string;
   imageUrl: string;
@@ -98,22 +96,18 @@ const quickFilters = [
   {
     id: 0,
     name: "All Products",
-    image:
-      all,
+    image: all,
   },
   {
     id: 1,
     name: "Screen Protectors",
-    image:
-     screenprotectors
+    image: screenprotectors,
   },
   {
     id: 2,
     name: "Mobile Cases",
-    image:
-      mobilecases
+    image: mobilecases,
   },
-  
 ];
 
 const ProductPage = () => {
@@ -228,10 +222,9 @@ const ProductPage = () => {
         </div>
         <div className="mt-16">
           <div className="flex justify-center space-x-4 mb-8">
-          <div className="flex flex-row items-center justify-center mb-10 w-full">
-  {showProductCards && <AnimatedTooltip items={quickFilters} />}
-</div>
-
+            <div className="flex flex-row items-center justify-center mb-10 w-full">
+              {showProductCards && <AnimatedTooltip items={quickFilters} />}
+            </div>
           </div>
 
           {showProductCards && <ProductsDisplay cards={cards} />}
