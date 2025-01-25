@@ -44,7 +44,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     <div ref={dropdownRef} className="relative w-full">
       <button
         onClick={toggleDropdown}
-        className="flex justify-between items-center w-full  md:w-[100%] lg:w-[250%] border-b border-gray-400 pb-1 text-gray-700 focus:outline-none"
+        className="flex justify-between items-center w-full  md:w-[140%] lg:w-[250%] border-b border-gray-400 pb-1 text-gray-700 focus:outline-none"
         style={{ minWidth: '200px' }} 
       >
         <span className="select-none text-gray-500">
@@ -56,7 +56,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       <div
         className={`${
           dropdownOpen ? "block" : "hidden"
-        } absolute z-10 w-full md:w-[100%] lg:w-[250%] mt-2 bg-white shadow-lg rounded-md max-h-60 overflow-auto`}
+        } absolute z-10 w-full md:w-[140%] lg:w-[250%] mt-2 bg-white shadow-lg rounded-md max-h-60 overflow-auto`}
       >
         {options.map((option) => (
           <a
