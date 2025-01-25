@@ -228,9 +228,10 @@ const ProductPage = () => {
         </div>
         <div className="mt-16">
           <div className="flex justify-center space-x-4 mb-8">
-            <div className="flex flex-row items-center justify-center mb-10 w-full">
-              <AnimatedTooltip items={quickFilters} />
-            </div>
+          <div className="flex flex-row items-center justify-center mb-10 w-full">
+  {showProductCards && <AnimatedTooltip items={quickFilters} />}
+</div>
+
           </div>
 
           {showProductCards && <ProductsDisplay cards={cards} />}
