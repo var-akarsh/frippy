@@ -83,7 +83,7 @@ export const AnimatedTooltip = ({
                 width={100}   
                 src={item.image}
                 alt={item.name}
-                className="object-cover !m-0 !p-0 object-top rounded-full h-24 w-24 border-2 group-hover:scale-105 group-hover:z-30 border-white relative transition duration-500"  
+                className="object-cover !m-0 !p-0 object-top rounded-full h-24 w-24 border border-gray-200 group-hover:scale-105 group-hover:z-30 relative transition duration-500"  
               />
               {/* <span className="mt-2 text-gray-500 text-sm">{item.name}</span> */} 
               {/* //commented below title name */}
