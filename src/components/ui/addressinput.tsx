@@ -103,7 +103,7 @@ useEffect(() => {
       </p>
 
       <form className="my-4" onSubmit={handleSubmit}>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-2">
+        <div className="flex flex-row md:flex-row  md:space-y-0 md:space-x-4 mb-2">
           <LabelInputContainer>
             <Label className="required-label" htmlFor="firstname" >First Name</Label> {/* Required field */}
             <Input
@@ -127,6 +127,8 @@ useEffect(() => {
             {errors.lastname && <p className="text-red-500 text-sm">{errors.lastname}</p>}
           </LabelInputContainer>
         </div>
+        <div className="flex flex-row md:flex-row  md:space-y-0 md:space-x-4 mb-2">
+        
         <LabelInputContainer className="mb-2">
           <Label  htmlFor="email">Email Address (Optional)</Label>
           <Input
@@ -149,6 +151,7 @@ useEffect(() => {
           />
           {errors.contactNumber && <p className="text-red-500 text-sm">{errors.contactNumber}</p>}
         </LabelInputContainer>
+        </div>
         <LabelInputContainer className="mb-3">
           <Label className="required-label" htmlFor="addressLine1" >Address Line 1</Label> {/* Required field */}
           <Input
