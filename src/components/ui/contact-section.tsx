@@ -151,7 +151,7 @@ const ContactSection = () => {
             />
 
             <button
-              className="w-full h-12 text-white text-base font-semibold leading-6 rounded-full transition-all duration-700 hover:bg-[#E07B39] bg-[#DCE4C9] shadow-sm"
+              className="w-full h-12 text-gray-600 text-base font-semibold leading-6 rounded-full transition-all duration-700 hover:bg-[#E07B39] bg-[#DCE4C9] shadow-sm"
               onClick={handleSubmit}
             >
               Send Your Message/Query
