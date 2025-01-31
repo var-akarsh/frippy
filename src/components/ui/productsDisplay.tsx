@@ -15,7 +15,7 @@ const router = useRouter()
   
           <div className=" grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8" >
             {products.map((product: any) => (
-              <div key={product.title} className="group relative" onClick={handleClick2}>
+              <div  key={product.title} className="group relative cursor-pointer" onClick={handleClick2}>
                 <Image
                   alt={product.title}
                   src={product.src}

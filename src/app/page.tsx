@@ -9,6 +9,7 @@ import FooterSection from "../components/footerSection";
 import IntroSection from "@/components/introSection";
 import ProductsSection from "@/components/productsSection";
 import "./globals.css";
+import ContactSection from "@/components/ui/contact-section";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -41,6 +42,9 @@ export default function Home() {
             <FaqSection />
           </div>
           <div id="contact">
+            <ContactSection />
+          </div>
+          <div id="footer">
             <FooterSection />
           </div>
         </>

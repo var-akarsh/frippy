@@ -11,10 +11,6 @@ const product = {
   name: "Metal Ring Premium Magsafe Back Cover",
   price: "₹499",
   href: "#",
-  // breadcrumbs: [
-  //   { id: 1, name: 'Men', href: '#' },
-  //   { id: 2, name: 'Clothing', href: '#' },
-  // ],
   images: [
     {
       src: metalRing,
@@ -38,9 +34,8 @@ const product = {
     { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
     { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
   ],
-
   description:
-    "          Premium protection with a built-in metal ring for added durability and MagSafe compatibility.",
+    "Premium protection with a built-in metal ring for added durability and MagSafe compatibility.",
   highlights: [
     "360 Protection",
     "Magsafe Compatible",
@@ -48,7 +43,7 @@ const product = {
     "Camera Protection",
   ],
   details:
-    "Made from a blend of polycarbonate and TPU. Comes with a 1 year warranty.Free delivery on all orders.",
+    "Made from a blend of polycarbonate and TPU. Comes with a 1 year warranty. Free delivery on all orders.",
 };
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
@@ -59,10 +54,10 @@ function classNames(...classes: string[]) {
 export default function Example() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const router = useRouter();
-  const handleAddToBag = (event:any) => {
-    event.preventDefault(); 
+  const handleAddToBag = (event: any) => {
+    event.preventDefault();
     console.log("asdaa");
-    router.push("/address"); 
+    router.push("/address");
   };
   return (
     <div className="bg-white">
@@ -86,6 +81,19 @@ export default function Example() {
 
         {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:grid lg:grid-cols-3 lg:gap-x-4 lg:px-8">
+          {/* Scrollable container for small screens */}
+          <div className="lg:hidden overflow-x-auto whitespace-nowrap scrollbar-hide">
+            {product.images.map((image, index) => (
+              <div key={index} className="inline-block w-64 h-64 mr-4">
+                <Image
+                  alt={image.alt}
+                  src={image.src}
+                  className="h-full w-full rounded-lg object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
           {/* First large image */}
           <Image
             alt={product.images[0].alt}
@@ -111,7 +119,7 @@ export default function Example() {
           <Image
             alt={product.images[3].alt}
             src={product.images[3].src}
-            className="h-82 w-full object-cover rounded-lg lg:aspect-auto"
+            className="hidden h-82 w-full object-cover rounded-lg lg:block"
           />
         </div>
 
@@ -195,8 +203,7 @@ export default function Example() {
               <button
                 type="submit"
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#E07B39] px-8 py-3 text-base font-medium text-white hover:bg-[#C15C2D] focus:ring-2 focus:ring-[#E07B39] focus:ring-offset-2 focus:outline-hidden"
-                // onClick={handleAddToBag} 
-                >
+              >
                 Order Now!
               </button>
             </form>
