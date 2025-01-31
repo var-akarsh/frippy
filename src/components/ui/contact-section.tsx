@@ -10,6 +10,7 @@ const ContactSection = () => {
     message: "",
   });
 
+  // Handle input changes
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
@@ -23,22 +24,18 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="bg-black mt-5">
+    <section className="bg-[#F5F5DC] mt-5">
       <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
         {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"> */}
         <div className="grid lg:grid-cols-2 grid-cols-1">
           <div className="lg:mb-0 mb-10">
             <div className="group w-full h-full">
               <div className="relative h-full">
-
-<Image
-  src={contactImage}
-  alt="Contact Us"
-  layout="fill" // This allows the image to fill its container
-  objectFit="cover" // To mimic the object-cover class from Tailwind CSS
-  className="lg:rounded-l-2xl rounded-2xl bg-blend-multiply bg-indigo-700"
-/>
-
+                <img
+                  src={contactImage.src}
+                  alt="Contact Us"
+                  className="w-full h-full lg:rounded-l-2xl rounded-2xl bg-blend-multiply bg-indigo-700 object-cover"
+                />
                 <div className="absolute bottom-0 w-full lg:p-11 p-5">
                   <div className="bg-white rounded-lg p-6 block">
                     <a href="tel:9466533162" className="flex items-center mb-6">
@@ -114,11 +111,8 @@ const ContactSection = () => {
             </div>
           </div>
 
-          <div className="bg-gray-50 p-5 lg:p-11 lg:rounded-r-2xl rounded-2xl mx-2">
-            <h2 className="text-[#B6A28E] font-manrope text-4xl font-semibold leading-10 mb-11">
-              Send Us A Message
-            </h2>
-
+          <div className="bg-gray-50 p-5 lg:p-11 lg:rounded-r-2xl rounded-2xl ">
+            
             <input
               type="text"
               name="name"
@@ -153,13 +147,14 @@ const ContactSection = () => {
               value={formData.message}
               onChange={handleInputChange}
               style={{ lineHeight: "3rem" }}
+              
             />
 
             <button
-              className="w-full h-12 text-white text-base font-semibold leading-6 rounded-full transition-all duration-700 hover:bg-[#DCE4C9] bg-[#E07B39] shadow-sm"
+              className="w-full h-12 text-white text-base font-semibold leading-6 rounded-full transition-all duration-700 hover:bg-[#E07B39] bg-[#DCE4C9] shadow-sm"
               onClick={handleSubmit}
             >
-              Send
+              Send Your Message/Query
             </button>
           </div>
         </div>
