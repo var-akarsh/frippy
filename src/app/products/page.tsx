@@ -231,9 +231,9 @@ const ProductPage = () => {
           {showProductCards && <ProductsDisplay cards={cards} />}
         </div>
       </div>
-      <div id="footer">
-        <FooterSection />
-      </div>
+      {!showProductCards && <FooterSection/>}
+     
+      
     </>
   );
 };

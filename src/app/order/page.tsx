@@ -55,7 +55,7 @@ const ProductPage = () => {
     <div className="bg-[#fff] flex justify-center items-center relative">
         <Navbar />
       </div>
-      <div className="bg-[#fff] flex justify-center items-center relative"></div>
+      <div className="bg-[#fff] flex justify-center items-center relative mt-6"></div>
       <section className="py-24 relative">
         <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
           <h2 className="font-manrope font-bold text-4xl leading-10 text-black text-center">
@@ -167,26 +167,6 @@ const ProductPage = () => {
               <p className="font-semibold text-lg  py-6">
                 Total Price: <span className="text-[#E07B39]"> INR 349.00</span>
               </p>
-              <div className="flex flex-col sm:flex-row items-center max-lg:border-b border-gray-200">
-                <button className="flex outline-0 py-6 sm:pr-6  whitespace-nowrap gap-2 items-center justify-center font-semibold group text-lg text-black bg-white transition-all duration-500 hover:text-[#E07B39]">
-                  <svg
-                    className="stroke-black transition-all duration-500 group-hover:stroke-[#E07B39]"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 22 22"
-                    fill="none"
-                  >
-                    <path
-                      d="M5.5 5.5L16.5 16.5M16.5 5.5L5.5 16.5"
-                      stroke=""
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                  Cancel Order
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -201,7 +181,7 @@ const ProductPage = () => {
           </div>
         </div>
       </section>
-      <div id="footer">
+      <div id="footer" className="mt-12">
         <FooterSection />
       </div>
     </>
