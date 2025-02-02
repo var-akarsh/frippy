@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { StarIcon } from "@heroicons/react/20/solid";
 import { Radio, RadioGroup } from "@headlessui/react";
-import metalRing from "../../../public/images/products/metalRing.png";
-import Image from "next/image";
+import { StarIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
-import ProductDetail from "./productDetail";
+import { useState } from "react";
+import ProductCarousel from "./productCarousel";
 
 const product = {
   name: "Metal Ring Premium Magsafe Back Cover",
@@ -29,7 +27,8 @@ const product = {
   details:
     "Made from a blend of polycarbonate and TPU. Comes with a 1 year warranty. Free delivery on all orders.",
 };
-const reviews = { href: "#", average: 4, totalCount: 117 };
+
+const reviews = { average: 4, totalCount: 23 };
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -65,7 +64,7 @@ export default function Example() {
 
         <div className="mx-auto max-w-2xl px-2 sm:px-6 lg:max-w-6xl lg:grid lg:grid-cols-[2fr_1fr] lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pb-24">
           <div className="lg:col-span-2 lg:justify-self-center">
-            <ProductDetail />
+            <ProductCarousel />
           </div>
 
           <div className="lg:col-span-2">
@@ -99,7 +98,6 @@ export default function Example() {
                 </div>
                 <p className="sr-only">{reviews.average} out of 5 stars</p>
                 <a
-                  href={reviews.href}
                   className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   {reviews.totalCount} reviews
