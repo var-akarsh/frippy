@@ -4,6 +4,7 @@ import Image from "next/image";
 import metalRing from "../../../public/images/products/metalRing.png";
 
 import { useEffect, useState } from "react";
+import FooterSection from "@/components/footerSection";
 
 // Quotes array
 const quotes = [
@@ -51,6 +52,9 @@ const ProductPage = () => {
 
   return (
     <>
+    <div className="bg-[#fff] flex justify-center items-center relative">
+        <Navbar />
+      </div>
       <div className="bg-[#fff] flex justify-center items-center relative"></div>
       <section className="py-24 relative">
         <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
@@ -197,6 +201,9 @@ const ProductPage = () => {
           </div>
         </div>
       </section>
+      <div id="footer">
+        <FooterSection />
+      </div>
     </>
   );
 };
