@@ -91,7 +91,7 @@ const ProductPage = () => {
                     "mailto:connectfrippy@gmail.com?subject=Need%20help%20with%20my%20order";
                 }}
               >
-                Need Help?
+                Need Help? 
               </button>
             </div>
             <div className="w-full px-3 min-[400px]:px-6">
