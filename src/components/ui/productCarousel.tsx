@@ -12,6 +12,10 @@ const ProductCarousel = () => {
     "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495669/frippy/mr3.webp.webp",
     "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495671/frippy/mr4.webp.webp",
     "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495673/frippy/mr5.webp.webp",
+    "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495673/frippy/mr5.webp.webp",
+    "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495673/frippy/mr5.webp.webp",
+
+
   ];
 
   const handleChangeImage = (src: string) => {
