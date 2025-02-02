@@ -30,7 +30,6 @@ export function AddressForm({
     contactNumber: "",
     addressLine1: "",
     addressLine2: "",
-
     pincode: "",
   });
   const router = useRouter();
@@ -176,6 +175,7 @@ export function AddressForm({
               placeholder="Bruce"
               type="text"
               onChange={handleInputChange}
+              className="w-64"
             />
             {errors.name && (
               <p className="text-red-500 text-sm">{errors.name}</p>
@@ -192,6 +192,7 @@ export function AddressForm({
               placeholder="Wayne"
               type="text"
               onChange={handleInputChange}
+              className="w-64"
             />
             {errors.lastname && (
               <p className="text-red-500 text-sm">{errors.lastname}</p>
@@ -207,6 +208,7 @@ export function AddressForm({
               placeholder="superhero@gotham.com"
               type="email"
               onChange={handleInputChange}
+              className="w-64"
             />
             {errors.email && (
               <p className="text-red-500 text-sm">{errors.email}</p>
@@ -223,6 +225,7 @@ export function AddressForm({
               placeholder="9998882222"
               type="number"
               onChange={handleInputChange}
+              className="w-64"
             />
             {errors.contactNumber && (
               <p className="text-red-500 text-sm">{errors.contactNumber}</p>

@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(10);
@@ -11,34 +13,33 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Update: Each menu item now has a corresponding section id
   const menuItems = [
     { name: "Home", href: "#home" },
     { name: "Why Frippy", href: "#why-frippy" },
     { name: "Reviews", href: "#testimonials" },
-    { name: "Products", href: "#products" },
+    { name: "Products", href: "/products" },
     { name: "FAQ", href: "#faq" },
     { name: "Contact", href: "#contact" },
   ];
 
-  // Scroll to section when a navbar item is clicked
-  const scrollToSection = (id: string) => {
-    const section = document.querySelector(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+  const handleNavigation = (href: string) => {
+    if (href === "/products") {
+      router.push(href); 
+    } else {
+      const section = document.querySelector(href);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
-  // Handle scroll direction
   const controlNavbar = () => {
-    if (typeof window !== "undefined") {
-      if (window.scrollY < 10 || window.scrollY < lastScrollY) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-      setLastScrollY(window.scrollY);
+    if (window.scrollY < 10 || window.scrollY < lastScrollY) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
     }
+    setLastScrollY(window.scrollY);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -48,13 +49,8 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", controlNavbar);
-
-      return () => {
-        window.removeEventListener("scroll", controlNavbar);
-      };
-    }
+    window.addEventListener("scroll", controlNavbar);
+    return () => window.removeEventListener("scroll", controlNavbar);
   }, [lastScrollY]);
 
   useEffect(() => {
@@ -63,10 +59,7 @@ const Navbar = () => {
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMenuOpen]);
 
   return (
@@ -82,7 +75,6 @@ const Navbar = () => {
           <span className="text-white font-gilroy-bold text-2xl font-extrabold">
             Frippy
           </span>
-          <div className="mr-6"></div>
         </div>
 
         {/* Hamburger Icon for Mobile */}
@@ -114,7 +106,7 @@ const Navbar = () => {
             {menuItems.map((item) => (
               <li key={item.name}>
                 <button
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavigation(item.href)}
                   className="text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300 cursor-pointer"
                 >
                   {item.name}
@@ -131,15 +123,15 @@ const Navbar = () => {
           <ul className="space-y-3">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <a
+                <button
                   onClick={() => {
-                    scrollToSection(item.href);
+                    handleNavigation(item.href);
                     setIsMenuOpen(false); // Close the menu on item click
                   }}
                   className="block text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300 cursor-pointer"
                 >
                   {item.name}
-                </a>
+                </button>
               </li>
             ))}
           </ul>

@@ -19,11 +19,7 @@ const quotes = [
   "The purpose of technology is not to confuse the brain but to serve the body. — William S. Burroughs",
 ];
 
-const colors = [
-  "bg-purple-200",
-  "bg-[#F5F5DC]",
-  "bg-[#DCE4C9]",
-];
+const colors = ["bg-purple-200", "bg-[#F5F5DC]", "bg-[#DCE4C9]"];
 
 const ProductPage = () => {
   const [orderId, setOrderId] = useState<string>("");
@@ -48,23 +44,22 @@ const ProductPage = () => {
 
     const interval = setInterval(() => {
       updateQuoteAndColor();
-    }, 30000); 
+    }, 30000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <>
-      <div className="bg-[#fff] flex justify-center items-center relative">
-      </div>
+      <div className="bg-[#fff] flex justify-center items-center relative"></div>
       <section className="py-24 relative">
         <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
           <h2 className="font-manrope font-bold text-4xl leading-10 text-black text-center">
             We&apos;re prepping your box!
           </h2>
           <p className="mt-4 font-normal text-lg leading-8 text-gray-500 mb-11 text-center">
-            Frippy has got you covered - Your order is successfully placed and our
-            executive will contact you.
+            Frippy has got you covered - Your order is successfully placed and
+            our executive will contact you.
           </p>
           <div className="main-box border border-gray-200 rounded-xl pt-6 max-w-xl max-lg:mx-auto lg:max-w-full">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between px-6 pb-6 border-b border-gray-200">
@@ -85,7 +80,13 @@ const ProductPage = () => {
                   </span>
                 </p>
               </div>
-              <button className="rounded-full py-3 px-7 font-semibold text-sm leading-7 text-white bg-[#E07B39] max-lg:mt-5 shadow-sm shadow-transparent transition-all duration-500 hover:bg-[#E07B39] hover:shadow-[#E07B39]">
+              <button
+                className="rounded-full py-3 px-7 font-semibold text-sm leading-7 text-white bg-[#E07B39] max-lg:mt-5 shadow-sm shadow-transparent transition-all duration-500 hover:bg-[#E07B39] hover:shadow-[#E07B39]"
+                onClick={() => {
+                  window.location.href =
+                    "mailto:connectfrippy@gmail.com?subject=Need%20help%20with%20my%20order";
+                }}
+              >
                 Need Help?
               </button>
             </div>
@@ -134,7 +135,7 @@ const ProductPage = () => {
                             Status
                           </p>
                           <p className="font-medium text-sm leading-6 whitespace-nowrap py-0.5 px-3 rounded-full lg:mt-3 bg-emerald-50 text-emerald-600">
-                            Ready for Delivery
+                            Ready to Dispatch
                           </p>
                         </div>
                       </div>
@@ -187,7 +188,7 @@ const ProductPage = () => {
         </div>
       </section>
 
-      <section className="py-32 bg-gray-50">
+      <section className="py-4 bg-gray-50">
         <div className="w-full max-w-7xl px-4 md:px-5 lg:px-6 mx-auto">
           <div
             className={`${color} text-gray-600 rounded-xl p-12 shadow-lg max-w-3xl mx-auto text-center transition-all duration-1000`}

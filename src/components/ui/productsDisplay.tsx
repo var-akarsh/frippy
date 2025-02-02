@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import FooterSection from "../footerSection";
 
 export default function ProductsDisplay(prop: any) {
     const products = prop.cards;
@@ -9,6 +10,7 @@ const router = useRouter()
       router.push('/test')
     }
     return (
+      <>
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900"></h2>
@@ -36,6 +38,10 @@ const router = useRouter()
           </div>
         </div>
       </div>
+      <div id="footer">
+        <FooterSection />
+      </div>
+      </>
     );
   }
   

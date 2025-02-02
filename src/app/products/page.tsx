@@ -21,6 +21,7 @@ import all from "../../../public/images/quickfilters/All.png";
 import screenprotectors from "../../../public/images/quickfilters/ScreenProtectors.png";
 
 import mobilecases from "../../../public/images/quickfilters/MOBILECASE.png";
+import FooterSection from "@/components/footerSection";
 
 type Product = {
   id: string;
@@ -229,6 +230,9 @@ const ProductPage = () => {
 
           {showProductCards && <ProductsDisplay cards={cards} />}
         </div>
+      </div>
+      <div id="footer">
+        <FooterSection />
       </div>
     </>
   );
