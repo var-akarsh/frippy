@@ -8,40 +8,39 @@ import ProductCarousel from "./productCarousel";
 import Navbar from "../navbar";
 import FooterSection from "../footerSection";
 
-const product = {
-  name: "Metal Ring Premium Magsafe Back Cover",
-  price: "₹499",
-
-  colors: [
-    { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
-    { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
-    { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
-  ],
-  description:
-    "Premium protection with a built-in metal ring for added durability and MagSafe compatibility.",
-  highlights: [
-    "360 Protection",
-    "Magsafe Compatible",
-    "Drop Protection",
-    "Camera Protection",
-  ],
-  details:
-    "Made from a blend of polycarbonate and TPU. Comes with a 1-year warranty. Free delivery on all orders.",
-};
-
-const reviews = { average: 4, totalCount: 23 };
-
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ProductDescription() {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+export default function ProductDescription({ product }: { product: any }) {
+  // Filter out any image where the color is "Global" for the initial state
+  const filteredImages = product.images.filter(
+    (img: any) => img.color !== "Global"
+  );
+
+  // Store the selected color and its corresponding image URL
+  const [selectedColor, setSelectedColor] = useState(
+    filteredImages.length > 0 ? filteredImages[0].color : ""
+  );
+  const [colorByImage, setColorByImage] = useState(
+    filteredImages.length > 0 ? filteredImages[0].imageUrl : ""
+  );
+
   const router = useRouter();
 
   const handleAddToBag = (event: any) => {
     event.preventDefault();
     router.push("/address");
+  };
+
+  const handleColorChange = (color: string) => {
+    setSelectedColor(color);
+    // Find the imageUrl for the selected color and update the state
+    const selectedImage = filteredImages.find((img: any) => img.color === color);
+    if (selectedImage) {
+      setColorByImage(selectedImage.imageUrl);
+      console.log("Selected color:", color + " Image URL:", selectedImage.imageUrl);
+    }
   };
 
   return (
@@ -58,25 +57,19 @@ export default function ProductDescription() {
               {/* Left: Product Carousel */}
               <div className="lg:col-span-1">
                 <ProductCarousel
-                  mainImage="https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495509/frippy/mr1.webp.webp"
-                  thumbnails={[
-                    "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495509/frippy/mr1.webp.webp",
-                    "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495512/frippy/mr2.webp.webp",
-                    "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495669/frippy/mr3.webp.webp",
-                    "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495671/frippy/mr4.webp.webp",
-                    "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495673/frippy/mr5.webp.webp",
-                  ]}
+                  mainImage={colorByImage} // Update the main image based on selected color
+                  thumbnails={product.images.map((img: any) => img.imageUrl)}
                 />
               </div>
 
               {/* Right: Product Details */}
               <div className="lg:col-span-1 lg:self-start ml-10 mt-32">
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                  {product.name}
+                  {product.productName}
                 </h1>
 
                 <p className="text-3xl tracking-tight text-gray-900 mt-2">
-                  {product.price}
+                  ₹{product.price}
                 </p>
 
                 {/* Reviews */}
@@ -87,7 +80,7 @@ export default function ProductDescription() {
                         key={rating}
                         aria-hidden="true"
                         className={classNames(
-                          reviews.average > rating
+                          product.reviews?.average > rating
                             ? "text-gray-900"
                             : "text-gray-200",
                           "size-5 shrink-0"
@@ -95,9 +88,11 @@ export default function ProductDescription() {
                       />
                     ))}
                   </div>
-                  <p className="sr-only">{reviews.average} out of 5 stars</p>
+                  <p className="sr-only">
+                    {product.reviews?.average} out of 5 stars
+                  </p>
                   <a className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                    {reviews.totalCount} reviews
+                    {product.reviews?.totalCount} reviews
                   </a>
                 </div>
 
@@ -107,25 +102,27 @@ export default function ProductDescription() {
                   <fieldset aria-label="Choose a color" className="mt-4">
                     <RadioGroup
                       value={selectedColor}
-                      onChange={setSelectedColor}
+                      onChange={handleColorChange} // Handle color change
                       className="flex items-center gap-x-3"
                     >
-                      {product.colors.map((color) => (
+                      {filteredImages.map((img: any) => (
                         <Radio
-                          key={color.name}
-                          value={color}
-                          aria-label={color.name}
+                          key={img.color}
+                          value={img.color}
+                          aria-label={img.color}
                           className="relative flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-hidden"
                         >
                           <span
                             aria-hidden="true"
                             className={classNames(
-                              color.class,
                               "size-8 rounded-full border border-black/10 transition-all",
-                              selectedColor.name === color.name
+                              selectedColor === img.color
                                 ? "ring-2 ring-black border-black scale-110"
                                 : ""
                             )}
+                            style={{
+                              backgroundColor: img.colorHexCode, // Use colorHexCode for color circle
+                            }}
                           />
                         </Radio>
                       ))}
@@ -148,7 +145,7 @@ export default function ProductDescription() {
             {/* Below Carousel: Product Description */}
             <div className="mt-8 lg:mx-auto">
               <div>
-                <h3 className="sr-only">Description</h3>
+                <h3 className="text-sm font-bold text-gray-900">Description</h3> {/* Bold description heading */}
                 <div className="space-y-6">
                   <p className="text-base text-gray-900">
                     {product.description}
@@ -157,20 +154,26 @@ export default function ProductDescription() {
               </div>
 
               <div className="mt-10">
-                <h3 className="text-sm font-medium text-gray-900">
-                  Highlights
-                </h3>
+                <h3 className="text-sm font-bold text-gray-900">Highlights</h3> {/* Bold highlights heading */}
                 <ul className="mt-4 list-disc space-y-2 pl-4 text-sm">
-                  {product.highlights.map((highlight) => (
-                    <li key={highlight} className="text-gray-400">
-                      <span className="text-gray-600">{highlight}</span>
-                    </li>
-                  ))}
+                  {/* Hardcoded highlights */}
+                  <li className="text-gray-400">
+                    <span className="text-gray-600">360 Protection</span>
+                  </li>
+                  <li className="text-gray-400">
+                    <span className="text-gray-600">Magsafe Compatible</span>
+                  </li>
+                  <li className="text-gray-400">
+                    <span className="text-gray-600">Drop Protection</span>
+                  </li>
+                  <li className="text-gray-400">
+                    <span className="text-gray-600">Camera Protection</span>
+                  </li>
                 </ul>
               </div>
 
               <div className="mt-10">
-                <h3 className="text-sm font-medium text-gray-900">Details</h3>
+                <h3 className="text-sm font-bold text-gray-900">Details</h3> {/* Bold details heading */}
                 <p className="mt-4 text-sm text-gray-600">{product.details}</p>
               </div>
             </div>

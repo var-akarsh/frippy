@@ -1,13 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface ProductCarouselProps {
   mainImage: string;
   thumbnails: string[];
 }
 
-const ProductCarousel: React.FC<ProductCarouselProps> = ({ mainImage, thumbnails }) => {
+const ProductCarousel: React.FC<ProductCarouselProps> = ({
+  mainImage,
+  thumbnails,
+}) => {
   const [selectedImage, setSelectedImage] = useState(mainImage);
+
+  // Update selectedImage whenever mainImage prop changes
+  useEffect(() => {
+    setSelectedImage(mainImage);
+  }, [mainImage]);
 
   return (
     <div className="container mx-auto px-4 py-8">
