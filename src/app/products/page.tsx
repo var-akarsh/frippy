@@ -2,7 +2,7 @@
 import { Modal, ModalTrigger } from "@/components/aceternity/animated-modal";
 import { FocusCards } from "@/components/aceternity/focus-card";
 import Navbar from "@/components/navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "../../components/ui/dropdown"; // Import the Dropdown component
 
 import androidTempered from "../../../public/images/products/androidTempered.png";
@@ -35,63 +35,6 @@ type Option = {
   label: string;
 };
 
-const cards = [
-  {
-    price: "349",
-    title: "Iphone Silicone Back Cover",
-    src: silicone,
-    originalPrice: "699",
-  },
-  {
-    price: "349",
-    title: "Iphone Paper Thin MagSafe Back Cover",
-    src: paperBack,
-    originalPrice: "699",
-  },
-  {
-    price: "599",
-    title: "Iphone Metal Ring Premium Magsafe Back Cover",
-    src: metalRing,
-    originalPrice: "1199",
-  },
-  {
-    price: "499",
-    title: "Spigen Iphone Transparent Back Cover",
-    src: spigen,
-    originalPrice: "999",
-  },
-  {
-    price: "249",
-    title: "Iphone Ultra Shine Edge to Edge Screen Glass Protector",
-    src: iphoneTempered,
-    originalPrice: "499",
-  },
-  {
-    price: "349",
-    title: "Iphone 360° Privacy Screen Glass Protector",
-    src: privacy,
-    originalPrice: "699",
-  },
-  {
-    price: "349",
-    title: "Iphone Matte Elegance Screen Glass Protector",
-    src: matte,
-    originalPrice: "699",
-  },
-  {
-    price: "349",
-    title: "Samsung S22/S23 Optical Edge to Edge Screen Glass Protector",
-    src: s23,
-    originalPrice: "699",
-  },
-  {
-    price: "249",
-    title: "Android Edge to Edge Screen Glass Protector",
-    src: androidTempered,
-    originalPrice: "499",
-  },
-];
-
 // Define your filter options
 const quickFilters = [
   {
@@ -117,10 +60,40 @@ const ProductPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedBrand, setSelectedBrand] = useState<string>("");
   const [selectedModel, setSelectedModel] = useState<string>("");
-  const [showProductCards, setShowProductCards] = useState<boolean>(false); // New state for showing the cards
+  const [showProductCards, setShowProductCards] = useState<boolean>(false); 
+  const [loading, setLoading] = useState<boolean>(false); 
+  const [brands, setBrands] = useState<Option[]>([]); 
+  const [models, setModels] = useState<Option[]>([]); // Store models dynamically based on brand
 
   const handleFilterClick = (filter: any) => {
     setSelectedFilter(filter);
+  };
+
+  const fetchProducts = async (modelName: string) => {
+    setLoading(true); // Set loading state
+    try {
+      const response = await fetch(
+        `http://localhost:8080/product/getProductsByModel?modelName=${encodeURIComponent(
+          modelName
+        )}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+      const data: Product[] = await response.json();
+      setProducts(data);
+      setShowProductCards(true); // Show product cards once data is fetched
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false); // End loading state
+    }
+  };
+
+  const handleFindItClick = () => {
+    if (selectedModel) {
+      fetchProducts(selectedModel);
+    }
   };
 
   const productTypes: Option[] = [
@@ -130,31 +103,58 @@ const ProductPage = () => {
     { value: "accessories", label: "Accessories" },
   ];
 
-  const brands: Option[] = [
-    { value: "samsung", label: "Samsung" },
-    { value: "apple", label: "Apple" },
-    { value: "xiaomi", label: "Xiaomi" },
-    { value: "oneplus", label: "OnePlus" },
-  ];
-
-  const models: Option[] = [
-    { value: "model-1", label: "Model 1" },
-    { value: "model-2", label: "Model 2" },
-    { value: "model-3", label: "Model 3" },
-    { value: "model-4", label: "Model 4" },
-  ];
+ 
 
   const handleBrandSelect = (brand: Option) => {
-    setSelectedBrand(brand.label); // Set the selected brand label
+    setSelectedBrand(brand.label); 
+    fetchModels(brand.label);
   };
 
   const handleModelSelect = (model: Option) => {
     setSelectedModel(model.label); // Set the selected model label
   };
 
-  const handleFindItClick = () => {
-    console.log("Find It clicked");
-    setShowProductCards(true); // Show the product cards when "Find It!" is clicked
+  useEffect(() => {
+    fetchBrands();
+  }, []);
+
+  const fetchBrands = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/brand");
+      if (!response.ok) {
+        throw new Error("Failed to fetch brands");
+      }
+      const data = await response.json();
+      const brandOptions = data.map((brand:any) => ({
+        value: brand.brandName,
+        label: brand.brandName,
+      }));
+      setBrands(brandOptions); 
+    } catch (error) {
+      console.error("Error fetching brands:", error);
+    } finally {
+    }
+  };
+  const fetchModels = async (brandName: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/phoneModel/getPhoneModelsByBrand?brandName=${encodeURIComponent(
+          brandName
+        )}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch models");
+      }
+      const data= await response.json();
+      const modelOptions = data.map((model:any) => ({
+        value: model.modelName,
+        label: model.modelName,
+      }));
+      setModels(modelOptions); 
+    } catch (error) {
+      console.error("Error fetching models:", error);
+    } finally {
+    }
   };
 
   return (
@@ -228,12 +228,10 @@ const ProductPage = () => {
             </div>
           </div>
 
-          {showProductCards && <ProductsDisplay cards={cards} />}
+          {showProductCards && <ProductsDisplay cards={products} />}
         </div>
       </div>
-      {!showProductCards && <FooterSection/>}
-     
-      
+      {!showProductCards && <FooterSection />}
     </>
   );
 };
