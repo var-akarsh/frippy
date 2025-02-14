@@ -73,7 +73,7 @@ const ProductPage = () => {
     setLoading(true); // Set loading state
     try {
       const response = await fetch(
-        `http://localhost:8080/product/getProductsByModel?modelName=${encodeURIComponent(
+        `http://ec2-65-0-71-181.ap-south-1.compute.amazonaws.com:8080/product/getProductsByModel?modelName=${encodeURIComponent(
           modelName
         )}`
       );
@@ -103,7 +103,6 @@ const ProductPage = () => {
     { value: "accessories", label: "Accessories" },
   ];
 
- 
 
   const handleBrandSelect = (brand: Option) => {
     setSelectedBrand(brand.label); 
@@ -120,7 +119,7 @@ const ProductPage = () => {
 
   const fetchBrands = async () => {
     try {
-      const response = await fetch("http://localhost:8080/brand");
+      const response = await fetch("http://ec2-65-0-71-181.ap-south-1.compute.amazonaws.com:8080/brand");
       if (!response.ok) {
         throw new Error("Failed to fetch brands");
       }
@@ -138,7 +137,7 @@ const ProductPage = () => {
   const fetchModels = async (brandName: string) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/phoneModel/getPhoneModelsByBrand?brandName=${encodeURIComponent(
+        `http://ec2-65-0-71-181.ap-south-1.compute.amazonaws.com:8080/phoneModel/getPhoneModelsByBrand?brandName=${encodeURIComponent(
           brandName
         )}`
       );
@@ -224,11 +223,11 @@ const ProductPage = () => {
         <div className="mt-16">
           <div className="flex justify-center space-x-4 mb-8">
             <div className="flex flex-row items-center justify-center mb-10 w-full">
-              {showProductCards && <AnimatedTooltip items={quickFilters} />}
+              {products.length>0 && <AnimatedTooltip items={quickFilters} />}
             </div>
           </div>
 
-          {showProductCards && <ProductsDisplay cards={products} />}
+          {products.length>0 && <ProductsDisplay cards={products} />}
         </div>
       </div>
       {!showProductCards && <FooterSection />}
