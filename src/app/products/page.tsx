@@ -1,27 +1,17 @@
 "use client";
 import { Modal, ModalTrigger } from "@/components/aceternity/animated-modal";
-import { FocusCards } from "@/components/aceternity/focus-card";
 import Navbar from "@/components/navbar";
 import { useEffect, useState } from "react";
 import Dropdown from "../../components/ui/dropdown"; // Import the Dropdown component
 
-import androidTempered from "../../../public/images/products/androidTempered.png";
-import iphoneTempered from "../../../public/images/products/iphoneTempered.jpeg";
-import matte from "../../../public/images/products/matte.jpg";
-import metalRing from "../../../public/images/products/metalRing.png";
-import paperBack from "../../../public/images/products/paperBack.png";
-import privacy from "../../../public/images/products/privacy.jpeg";
-import s23 from "../../../public/images/products/s23.jpeg";
-import silicone from "../../../public/images/products/silicone.jpeg";
-import spigen from "../../../public/images/products/spigen.jpg";
-import ProductsDisplay from "@/components/ui/productsDisplay";
 import { AnimatedTooltip } from "@/components/aceternity/animated-tooltip";
+import ProductsDisplay from "@/components/ui/productsDisplay";
 
 import all from "../../../public/images/quickfilters/All.png";
 import screenprotectors from "../../../public/images/quickfilters/ScreenProtectors.png";
 
-import mobilecases from "../../../public/images/quickfilters/MOBILECASE.png";
 import FooterSection from "@/components/footerSection";
+import mobilecases from "../../../public/images/quickfilters/MOBILECASE.png";
 
 type Product = {
   id: string;

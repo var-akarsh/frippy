@@ -53,9 +53,7 @@ export default function ProductDescription() {
       <div className="bg-white mt-12">
         <div className="pt-6">
           <div className="mx-auto max-w-6xl px-2 sm:px-6 lg:px-8 lg:pb-24">
-            {/* Large Screen Layout: Carousel Left, Details Right */}
             <div className="grid lg:grid-cols-2 lg:gap-x-8">
-              {/* Left: Product Carousel */}
               <div className="lg:col-span-1">
                 <ProductCarousel
                   mainImage="https://res.cloudinary.com/dpt4om8vd/image/upload/v1738495509/frippy/mr1.webp.webp"
@@ -69,7 +67,6 @@ export default function ProductDescription() {
                 />
               </div>
 
-              {/* Right: Product Details */}
               <div className="lg:col-span-1 lg:self-start ml-10 mt-32">
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                   {product.name}
@@ -79,7 +76,6 @@ export default function ProductDescription() {
                   {product.price}
                 </p>
 
-                {/* Reviews */}
                 <div className="mt-4 flex items-center">
                   <div className="flex items-center">
                     {[0, 1, 2, 3, 4].map((rating) => (
@@ -101,7 +97,6 @@ export default function ProductDescription() {
                   </a>
                 </div>
 
-                {/* Color Selection */}
                 <div className="mt-6">
                   <h3 className="text-sm font-medium text-gray-900">Color</h3>
                   <fieldset aria-label="Choose a color" className="mt-4">
@@ -133,8 +128,15 @@ export default function ProductDescription() {
                   </fieldset>
                 </div>
 
-                {/* Order Now Button */}
-                <form className="mt-10" onSubmit={handleAddToBag}>
+                {/* Selected Color Label */}
+                <div className="mt-6">
+                  <p className="text-lg font-medium text-gray-900">
+                    Chosen Color:{" "}
+                    <span className="text-[#E07B39]">{selectedColor.name}</span>
+                  </p>
+                </div>
+
+                <form className="mt-4" onSubmit={handleAddToBag}>
                   <button
                     type="submit"
                     className="mt-5 flex w-1/2 items-center justify-center rounded-md border border-transparent bg-[#E07B39] py-3 text-base font-medium text-white hover:bg-[#C15C2D] focus:ring-2 focus:ring-[#E07B39] focus:ring-offset-2 focus:outline-hidden"
@@ -145,14 +147,13 @@ export default function ProductDescription() {
               </div>
             </div>
 
-            {/* Below Carousel: Product Description */}
             <div className="mt-8 lg:mx-auto">
               <div>
                 <h3 className="sr-only">Description</h3>
                 <div className="space-y-6">
-                  <p className="text-base text-gray-900">
-                    {product.description}
-                  </p>
+                  <h2 className="text-3xl font-bold text-gray-900">
+                    Product Description
+                  </h2>
                 </div>
               </div>
 
@@ -171,14 +172,14 @@ export default function ProductDescription() {
 
               <div className="mt-10">
                 <h3 className="text-sm font-medium text-gray-900">Details</h3>
-                <p className="mt-4 text-sm text-gray-600">{product.details}</p>
+                <p className="mt-4 text-sm text-gray-600">{product.description}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="footer">
+      <div id="footer" className="sm:mt-10">
         <FooterSection />
       </div>
     </>
