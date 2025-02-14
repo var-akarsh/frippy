@@ -173,8 +173,7 @@ export default function ProductDescription({ product }: { product: any }) {
               </div>
 
               <div className="mt-10">
-                <h3 className="text-sm font-bold text-gray-900">Details</h3> {/* Bold details heading */}
-                <p className="mt-4 text-sm text-gray-600">{product.details}</p>
+                
               </div>
             </div>
           </div>
