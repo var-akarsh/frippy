@@ -36,10 +36,16 @@ export default function ProductDescription({ product }: { product: any }) {
   const handleColorChange = (color: string) => {
     setSelectedColor(color);
     // Find the imageUrl for the selected color and update the state
-    const selectedImage = filteredImages.find((img: any) => img.color === color);
+    const selectedImage = filteredImages.find(
+      (img: any) => img.color === color
+    );
     if (selectedImage) {
       setColorByImage(selectedImage.imageUrl);
-      console.log("Selected color:", color + " Image URL:", selectedImage.imageUrl);
+      console.log(
+        "Selected color:",
+        color + " Image URL:",
+        selectedImage.imageUrl
+      );
     }
   };
 
@@ -80,20 +86,18 @@ export default function ProductDescription({ product }: { product: any }) {
                         key={rating}
                         aria-hidden="true"
                         className={classNames(
-                          product.reviews?.average > rating
-                            ? "text-gray-900"
-                            : "text-gray-200",
+                          4.5 > rating ? "text-gray-900" : "text-gray-200", // Hardcoded 4.5 rating
                           "size-5 shrink-0"
                         )}
                       />
                     ))}
                   </div>
-                  <p className="sr-only">
-                    {product.reviews?.average} out of 5 stars
-                  </p>
+                  <p className="sr-only">4.5 out of 5 stars</p>{" "}
+                  {/* Hardcoded rating */}
                   <a className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                    {product.reviews?.totalCount} reviews
-                  </a>
+                    23 reviews
+                  </a>{" "}
+                  {/* Hardcoded review count */}
                 </div>
 
                 {/* Color Selection */}
@@ -128,6 +132,15 @@ export default function ProductDescription({ product }: { product: any }) {
                       ))}
                     </RadioGroup>
                   </fieldset>
+                  {/* Show Selected Color */}
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-700">
+                      Chosen Color:{" "}
+                      <span className="font-medium text-gray-900">
+                        {selectedColor}
+                      </span>
+                    </p>
+                  </div>
                 </div>
 
                 {/* Order Now Button */}
@@ -144,37 +157,40 @@ export default function ProductDescription({ product }: { product: any }) {
 
             {/* Below Carousel: Product Description */}
             <div className="mt-8 lg:mx-auto">
+              {/* Highlights */}
+              <div className="mt-10">
+                <h3 className="text-3xl font-bold text-gray-900">
+                  Product Highlights
+                </h3>{" "}
+                <ul className="mt-4 list-disc space-y-2 pl-4 text-sm">
+                  {/* Hardcoded highlights */}
+                  <li className="text-gray-900">
+                    <span className="text-gray-900">360 Protection</span>
+                  </li>
+                  <li className="text-gray-900">
+                    <span className="text-gray-900">Magsafe Compatible</span>
+                  </li>
+                  <li className="text-gray-900">
+                    <span className="text-gray-900">Drop Protection</span>
+                  </li>
+                  <li className="text-gray-900">
+                    <span className="text-gray-900">Camera Protection</span>
+                  </li>
+                </ul>
+              </div>
+              {/* Description  */}
               <div>
-                <h3 className="text-sm font-bold text-gray-900">Description</h3> {/* Bold description heading */}
-                <div className="space-y-6">
+                <h3 className="text-3xl font-bold text-gray-900 mt-6">
+                  Description
+                </h3>{" "}
+                <div className="space-y-6 mt-3">
                   <p className="text-base text-gray-900">
                     {product.description}
                   </p>
                 </div>
               </div>
 
-              <div className="mt-10">
-                <h3 className="text-sm font-bold text-gray-900">Highlights</h3> {/* Bold highlights heading */}
-                <ul className="mt-4 list-disc space-y-2 pl-4 text-sm">
-                  {/* Hardcoded highlights */}
-                  <li className="text-gray-400">
-                    <span className="text-gray-600">360 Protection</span>
-                  </li>
-                  <li className="text-gray-400">
-                    <span className="text-gray-600">Magsafe Compatible</span>
-                  </li>
-                  <li className="text-gray-400">
-                    <span className="text-gray-600">Drop Protection</span>
-                  </li>
-                  <li className="text-gray-400">
-                    <span className="text-gray-600">Camera Protection</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mt-10">
-                
-              </div>
+              <div className="mt-10"></div>
             </div>
           </div>
         </div>
