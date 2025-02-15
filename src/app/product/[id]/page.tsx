@@ -15,7 +15,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
   const fetchProductDetails = async (productId: string) => {
     try {
       const response = await fetch(
-        `http://ec2-65-0-71-181.ap-south-1.compute.amazonaws.com:8080/product/${productId}` // Replace with your API endpoint
+        `https://api.frippy.in/product/${productId}` // Replace with your API endpoint
       );
       const data = await response.json();
       setProduct(data);

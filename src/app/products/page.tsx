@@ -73,7 +73,7 @@ const ProductPage = () => {
     setLoading(true); // Set loading state
     try {
       const response = await fetch(
-        `http://ec2-65-0-71-181.ap-south-1.compute.amazonaws.com:8080/product/getProductsByModel?modelName=${encodeURIComponent(
+        `https://api.frippy.in/product/getProductsByModel?modelName=${encodeURIComponent(
           modelName
         )}`
       );
@@ -119,7 +119,7 @@ const ProductPage = () => {
 
   const fetchBrands = async () => {
     try {
-      const response = await fetch("http://ec2-65-0-71-181.ap-south-1.compute.amazonaws.com:8080/brand");
+      const response = await fetch("https://api.frippy.in/brand");
       if (!response.ok) {
         throw new Error("Failed to fetch brands");
       }
@@ -137,7 +137,7 @@ const ProductPage = () => {
   const fetchModels = async (brandName: string) => {
     try {
       const response = await fetch(
-        `http://ec2-65-0-71-181.ap-south-1.compute.amazonaws.com:8080/phoneModel/getPhoneModelsByBrand?brandName=${encodeURIComponent(
+        `https://api.frippy.in/phoneModel/getPhoneModelsByBrand?brandName=${encodeURIComponent(
           brandName
         )}`
       );
