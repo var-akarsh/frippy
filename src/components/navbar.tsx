@@ -23,15 +23,22 @@ const Navbar = () => {
   ];
 
   const handleNavigation = (href: string) => {
-    if (href === "/products") {
-      router.push(href); 
+    if (href === "/products" || href === "/") {
+      router.push(href);
     } else {
-      const section = document.querySelector(href);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
+      if (window.location.pathname === "/") {
+        // Scroll directly if already on home
+        const section = document.getElementById(href.substring(1));
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // Navigate to home with query param
+        router.push("/");
       }
     }
   };
+  
 
   const controlNavbar = () => {
     if (window.scrollY < 10 || window.scrollY < lastScrollY) {
