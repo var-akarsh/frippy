@@ -15,7 +15,7 @@ const Contact = () => {
       {/* Heading Above Contact Section */}
       <div className="mt-28 flex justify-center">
         <h2 className="text-3xl font-bold text-center text-[#E07B39]">
-          We'd Love to Hear From You
+          We&apos;d Love to Hear From You
         </h2>
       </div>
 
