@@ -18,12 +18,13 @@ const Navbar = () => {
     { name: "Why Frippy", href: "#why-frippy" },
     { name: "Reviews", href: "#testimonials" },
     { name: "Products", href: "/products" },
+    { name: "Track", href: "/track" },
     { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "/contact" }, // Redirect to /contact
   ];
 
   const handleNavigation = (href: string) => {
-    if (href === "/products" || href === "/") {
+    if (href === "/products" || href === "/track" || href === "/contact") {
       router.push(href);
     } else {
       if (window.location.pathname === "/") {
