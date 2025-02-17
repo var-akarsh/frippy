@@ -22,7 +22,11 @@ function ProductsSection() {
       </div>
       <ul className="mx-auto w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-2 p-4 md:p-8">
         {cards.map((card) => (
-          <div key={card.title} className="p-4 flex flex-col bg-[#fff] rounded-xl">
+          <a
+            key={card.title}
+            onClick={() => router.push("/products")}
+            className="p-4 flex flex-col bg-[#fff] rounded-xl cursor-pointer transition duration-300 hover:shadow-lg"
+          >
             <div className="flex gap-4 flex-col w-full">
               <Image
                 width={100}
@@ -40,7 +44,7 @@ function ProductsSection() {
                 </p>
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </ul>
       <div className="flex justify-center mt-6">
@@ -69,13 +73,13 @@ const cards = [
     src: "https://res.cloudinary.com/dpt4om8vd/image/upload/v1739386131/frippy/iphoneTemperedDisplay.webp.webp",
   },
   {
+    description: "Starting at Rs.249/- only",
+    title: "Ultra Soft Silicone Case - Sleek & Shockproof",
+    src: "https://res.cloudinary.com/dpt4om8vd/image/upload/v1739816337/frippy/homepagesilicone.webp.webp",
+  },
+  {
     description: "Starting at Rs.299/- only",
     title: "True Transparent Cases: Sleek & Durable",
     src: "https://res.cloudinary.com/dpt4om8vd/image/upload/v1738496595/frippy/tdisplay.webp.webp",
-  },
-  {
-    description: "Starting at Rs.249/- only",
-    title: "Smooth & Premium Glass Guards",
-    src: "https://res.cloudinary.com/dpt4om8vd/image/upload/v1739386131/frippy/iphoneTemperedDisplay.webp.webp",
   }
 ];

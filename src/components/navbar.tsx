@@ -27,18 +27,15 @@ const Navbar = () => {
       router.push(href);
     } else {
       if (window.location.pathname === "/") {
-        // Scroll directly if already on home
         const section = document.getElementById(href.substring(1));
         if (section) {
           section.scrollIntoView({ behavior: "smooth" });
         }
       } else {
-        // Navigate to home with query param
         router.push("/");
       }
     }
   };
-  
 
   const controlNavbar = () => {
     if (window.scrollY < 10 || window.scrollY < lastScrollY) {
@@ -77,11 +74,14 @@ const Navbar = () => {
       }`}
     >
       <div className="flex justify-between items-center w-full">
-        {/* Logo */}
+        {/* Clickable Logo */}
         <div className="flex items-center">
-          <span className="text-white font-gilroy-bold text-2xl font-extrabold">
+          <button
+            onClick={() => router.push("/")}
+            className="text-white font-gilroy-bold text-2xl font-extrabold focus:outline-none"
+          >
             Frippy
-          </span>
+          </button>
         </div>
 
         {/* Hamburger Icon for Mobile */}
@@ -133,7 +133,7 @@ const Navbar = () => {
                 <button
                   onClick={() => {
                     handleNavigation(item.href);
-                    setIsMenuOpen(false); // Close the menu on item click
+                    setIsMenuOpen(false);
                   }}
                   className="block text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300 cursor-pointer"
                 >
