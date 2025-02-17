@@ -33,8 +33,43 @@ export function AddressForm({
     pincode: "",
   });
   const router = useRouter();
-  const handleCheckout = () => {
-    router.push("/order");
+  const handleCheckout = async () => {
+    const productId = localStorage.getItem("selectedProductId");
+    const colour = localStorage.getItem("colour");
+    const colourHexCode = localStorage.getItem("colourHexCode");
+
+    
+    if (!productId) {
+      console.error("No product ID found in local storage.");
+      return;
+    }
+    const timestamp = new Date().getTime();
+    const id = timestamp.toString().slice(-6); 
+  
+    const payload = {
+      ...selected,
+      productId: parseInt(productId),
+      colourName:colour,
+      colourHexCode:colourHexCode, 
+      id:id
+
+    };
+  
+    try {
+      const response = await axios.post("http://localhost:8080/order/create", payload); 
+  
+      if (response.status === 200 || response.status === 201) {
+        localStorage.setItem("orderId", response.data);
+        router.push("/order"); 
+      } else {
+        console.error("Error creating order:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error creating order:", error);
+    }
+    finally {
+      // localStorage.clear();
+    }
   };
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -52,6 +87,8 @@ export function AddressForm({
     validateField(id, value);
     saveToLocalStorage(selected);
   };
+
+  
 
   const handleFetchLocation = () => {
     navigator.geolocation.getCurrentPosition(

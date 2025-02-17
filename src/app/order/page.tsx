@@ -1,12 +1,10 @@
 "use client";
 import Navbar from "@/components/navbar";
 import Image from "next/image";
-import metalRing from "../../../public/images/products/metalRing.png";
 
 import { useEffect, useState } from "react";
 import FooterSection from "@/components/footerSection";
 
-// Quotes array
 const quotes = [
   "The telephone is a good way to talk to people without having to offer them a drink. — Fran Lebowitz",
   "Technology is best when it brings people together. — Matt Mullenweg",
@@ -24,18 +22,22 @@ const colors = ["bg-purple-200", "bg-[#F5F5DC]", "bg-[#DCE4C9]"];
 
 const ProductPage = () => {
   const [orderId, setOrderId] = useState<string>("");
-
-  useEffect(() => {
-    const randomOrderId = Math.floor(
-      10000000 + Math.random() * 90000000
-    ).toString();
-    setOrderId(randomOrderId);
-  }, []);
-
   const [quote, setQuote] = useState("");
   const [color, setColor] = useState("");
+  const [orderConfirmation, setOrderConfirmation] = useState({
+    productName: "",
+    colourName: "",
+    price: "",
+    status: "",
+    image_url: "",
+  });
 
   useEffect(() => {
+    const storedOrderId = localStorage.getItem("orderId");
+    if (storedOrderId) {
+      setOrderId(storedOrderId);
+    }
+
     const updateQuoteAndColor = () => {
       setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
       setColor(colors[Math.floor(Math.random() * colors.length)]);
@@ -50,9 +52,28 @@ const ProductPage = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (orderId) {
+      fetch(`http://localhost:8080/order/${orderId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setOrderConfirmation({
+            productName: data.productName,
+            colourName: data.colourName,
+            price: data.price,
+            status: data.status,
+            image_url: data.image_url,
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching order:", error);
+        });
+    }
+  }, [orderId]);
+
   return (
     <>
-    <div className="bg-[#fff] flex justify-center items-center relative">
+      <div className="bg-[#fff] flex justify-center items-center relative">
         <Navbar />
       </div>
       <div className="bg-[#fff] flex justify-center items-center relative mt-6"></div>
@@ -91,16 +112,16 @@ const ProductPage = () => {
                     "mailto:connectfrippy@gmail.com?subject=Need%20help%20with%20my%20order";
                 }}
               >
-                Need Help? 
+                Need Help?
               </button>
             </div>
             <div className="w-full px-3 min-[400px]:px-6">
               <div className="flex flex-col lg:flex-row items-center py-6 border-b border-gray-200 gap-6 w-full">
                 <div className="img-box max-lg:w-full">
                   <Image
-                    src={metalRing}
-                    width={140} // Update the width to a larger value
-                    height={140} // Update the height as well
+                    src={orderConfirmation.image_url}
+                    width={140}
+                    height={140}
                     alt="Premium Watch image"
                     className="aspect-square w-full lg:max-w-[140px] rounded-xl object-cover"
                   />
@@ -110,12 +131,18 @@ const ProductPage = () => {
                     <div className="flex items-center">
                       <div className="">
                         <h2 className="font-semibold text-xl leading-8 text-black mb-3">
-                          Iphone Metal Ring Premium Magsafe Back Cover
+                          {orderConfirmation.productName}
                         </h2>
                         <div className="flex items-center ">
                           <p className="font-medium text-base leading-7 text-black pr-4 mr-4 border-r border-gray-200">
-                            Colour: <span className="text-gray-500">Black</span>
+                            Colour:{" "}
+                            <span className="text-gray-500">
+                              {orderConfirmation.colourName === "Global"
+                                ? "Transparent"
+                                : orderConfirmation.colourName}
+                            </span>
                           </p>
+
                           <p className="font-medium text-base leading-7 text-black ">
                             Qty: <span className="text-gray-500">1</span>
                           </p>
@@ -129,7 +156,7 @@ const ProductPage = () => {
                             Price
                           </p>
                           <p className="lg:mt-4 font-medium text-sm leading-7 text-[#E07B39]">
-                            INR 349.00
+                            ₹{orderConfirmation.price}
                           </p>
                         </div>
                       </div>
@@ -139,7 +166,7 @@ const ProductPage = () => {
                             Status
                           </p>
                           <p className="font-medium text-sm leading-6 whitespace-nowrap py-0.5 px-3 rounded-full lg:mt-3 bg-emerald-50 text-emerald-600">
-                            Ready to Dispatch
+                            {orderConfirmation.status}
                           </p>
                         </div>
                       </div>
@@ -165,7 +192,11 @@ const ProductPage = () => {
             </div>
             <div className="w-full border-t border-gray-200 px-6 flex flex-col lg:flex-row items-center justify-between ">
               <p className="font-semibold text-lg  py-6">
-                Total Price: <span className="text-[#E07B39]"> INR 349.00</span>
+                Total Price:{" "}
+                <span className="text-[#E07B39]">
+                  {" "}
+                  ₹{orderConfirmation.price}
+                </span>
               </p>
             </div>
           </div>

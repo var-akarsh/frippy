@@ -30,6 +30,22 @@ export default function ProductDescription({ product }: { product: any }) {
 
   const handleAddToBag = (event: any) => {
     event.preventDefault();
+    console.log("Product added to bag", product);
+    localStorage.setItem("selectedProductId", product.productId);
+    const selectedImage = filteredImages.find(
+      (img: any) => img.color === selectedColor
+    );
+
+    if (selectedImage) {
+      localStorage.setItem("colourHexCode", selectedImage.colorHexCode);
+      localStorage.setItem("colour", selectedColor);
+    } else {
+      console.warn(
+        "No matching color found in filteredImages for the selected color."
+      );
+      localStorage.setItem("colourHexCode", "#0000FF");
+      localStorage.setItem("colour", "Global");
+    }
     router.push("/address");
   };
 
@@ -101,9 +117,10 @@ export default function ProductDescription({ product }: { product: any }) {
                 </div>
 
                 {/* Color Selection */}
+                {filteredImages.length > 0 && ( // Conditionally render the color selection */}
                 <div className="mt-6">
-                  <h3 className="text-sm font-medium text-gray-900">Color</h3>
-                  <fieldset aria-label="Choose a color" className="mt-4">
+                  <h3 className="text-sm font-medium text-gray-900">Colour</h3>
+                  <fieldset aria-label="Choose a colour" className="mt-4">
                     <RadioGroup
                       value={selectedColor}
                       onChange={handleColorChange} // Handle color change
@@ -135,13 +152,14 @@ export default function ProductDescription({ product }: { product: any }) {
                   {/* Show Selected Color */}
                   <div className="mt-2">
                     <p className="text-sm text-gray-700">
-                      Chosen Color:{" "}
+                      Chosen Colour:{" "}
                       <span className="font-medium text-gray-900">
                         {selectedColor}
                       </span>
                     </p>
                   </div>
                 </div>
+                )}
 
                 {/* Order Now Button */}
                 <form className="mt-10" onSubmit={handleAddToBag}>
