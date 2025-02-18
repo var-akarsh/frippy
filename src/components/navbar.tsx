@@ -18,17 +18,22 @@ const Navbar = () => {
     { name: "Why Frippy", href: "#why-frippy" },
     { name: "Reviews", href: "#testimonials" },
     { name: "Products", href: "/products" },
+    { name: "Track", href: "/track" },
     { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "/contact" }, // Redirect to /contact
   ];
 
   const handleNavigation = (href: string) => {
-    if (href === "/products") {
-      router.push(href); 
+    if (href === "/products" || href === "/track" || href === "/contact") {
+      router.push(href);
     } else {
-      const section = document.querySelector(href);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
+      if (window.location.pathname === "/") {
+        const section = document.getElementById(href.substring(1));
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        router.push("/");
       }
     }
   };
@@ -70,11 +75,14 @@ const Navbar = () => {
       }`}
     >
       <div className="flex justify-between items-center w-full">
-        {/* Logo */}
+        {/* Clickable Logo */}
         <div className="flex items-center">
-          <span className="text-white font-gilroy-bold text-2xl font-extrabold">
+          <button
+            onClick={() => router.push("/")}
+            className="text-white font-gilroy-bold text-2xl font-extrabold focus:outline-none"
+          >
             Frippy
-          </span>
+          </button>
         </div>
 
         {/* Hamburger Icon for Mobile */}
@@ -126,7 +134,7 @@ const Navbar = () => {
                 <button
                   onClick={() => {
                     handleNavigation(item.href);
-                    setIsMenuOpen(false); // Close the menu on item click
+                    setIsMenuOpen(false);
                   }}
                   className="block text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300 cursor-pointer"
                 >

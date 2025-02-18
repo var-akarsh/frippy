@@ -199,6 +199,8 @@ const ProductPage = () => {
                   options={models}
                   selectedOption={selectedModel}
                   onSelect={handleModelSelect}
+                  disabled={models.length === 0} // Disable if no models are available
+
                 />
               </div>
             }

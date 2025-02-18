@@ -1,20 +1,23 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "../../public/images/hero_1.png";
 import Image from "next/image";
-import Link from "next/link";
 import { FlipWords } from "./aceternity/FlipWords";
-import { useEffect, useState } from "react";
 import { BackgroundBeamsWithCollision } from "./aceternity/BackgroundBeamsWithCollision";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
-  // List of words to flip
+  const router = useRouter();
   const words = ["You Relax", "Order Now"];
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  const handleOrderClick = () => {
+    router.push("/products"); // Navigate to /products page
+  };
 
   if (!isClient) return null;
 
@@ -26,7 +29,6 @@ const HeroSection = () => {
           <p className="text-black font-gilroy-bold font-bold sm:text-3xl sm:text-left sm:text-5xl md:text-6xl lg:text-6xl mt-10 leading-tight">
             We Deliver <br /> We Install <br />
             <span className="text-[#E07B39] inline-block relative">
-              {/* Ensure consistent width for FlipWords to prevent flicker */}
               <span className="block w-full min-w-[140px]">
                 <FlipWords words={words} />
               </span>
@@ -36,13 +38,13 @@ const HeroSection = () => {
             Doorstep Free delivery and installation of mobile screen <br />
             guards, back cover, and more.
           </p>
-          <div className="flex justify-flex-start gap-4">
-            {/* Correct WhatsApp Link */}
-            <Link href="https://wa.me/919466533162?text=Hi%2C%20I%20want%20to%20place%20an%20order">
-              <button className="py-2 px-6 bg-[#E07B39] rounded-md text-[#F5F5DC] font-gilroy-bold shadow-sm transition duration-200 hover:bg-[#d46c32] hover:text-white border-2 border-transparent hover:border-black sm:mt-10">
-                Order on WhatsApp
-              </button>
-            </Link>
+          <div className="flex justify-start gap-4">
+            <button
+              onClick={handleOrderClick}
+              className="py-2 px-6 bg-[#E07B39] rounded-md text-[#F5F5DC] font-gilroy-bold shadow-sm transition duration-200 hover:bg-[#d46c32] hover:text-white border-2 border-transparent hover:border-black sm:mt-10"
+            >
+              Order Now
+            </button>
           </div>
         </div>
 

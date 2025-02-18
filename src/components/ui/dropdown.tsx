@@ -10,6 +10,7 @@ interface DropdownProps {
   options: Option[];
   selectedOption: string;
   onSelect: (option: Option) => void;
+  disabled?: boolean; // ✅ Added disabled prop
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -17,11 +18,15 @@ const Dropdown: React.FC<DropdownProps> = ({
   options,
   selectedOption,
   onSelect,
+  disabled = false, // Default is false
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+    if (!disabled) {
+      setDropdownOpen(!dropdownOpen);
+    }
   };
 
   useEffect(() => {
@@ -37,15 +42,15 @@ const Dropdown: React.FC<DropdownProps> = ({
     };
   }, []);
 
-
-  const dropdownRef = useRef<HTMLDivElement>(null); // Create a reference for the dropdown
-
   return (
     <div ref={dropdownRef} className="relative w-full">
       <button
         onClick={toggleDropdown}
-        className="flex justify-between items-center w-full  md:w-[140%] lg:w-[250%] border-b border-gray-400 pb-1 text-gray-700 focus:outline-none"
-        style={{ minWidth: '200px' }} 
+        className={`flex justify-between items-center w-full md:w-[140%] lg:w-[250%] border-b border-gray-400 pb-1 text-gray-700 focus:outline-none ${
+          disabled ? "opacity-50 cursor-not-allowed" : ""
+        }`}
+        style={{ minWidth: "200px" }}
+        disabled={disabled} // ✅ Disables button when needed
       >
         <span className="select-none text-gray-500">
           {selectedOption || label}
@@ -63,9 +68,12 @@ const Dropdown: React.FC<DropdownProps> = ({
             key={option.value}
             href="#"
             className="block px-4 py-2 text-gray-800 hover:bg-[#e07b39] hover:text-white"
-            onClick={() => {
-              onSelect(option);
-              setDropdownOpen(false);
+            onClick={(e) => {
+              e.preventDefault(); // Prevents navigation
+              if (!disabled) {
+                onSelect(option);
+                setDropdownOpen(false);
+              }
             }}
           >
             {option.label}
@@ -73,7 +81,6 @@ const Dropdown: React.FC<DropdownProps> = ({
         ))}
       </div>
     </div>
-
   );
 };
 
