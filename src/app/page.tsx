@@ -10,6 +10,8 @@ import IntroSection from "@/components/introSection";
 import ProductsSection from "@/components/productsSection";
 import "./globals.css";
 import ContactSection from "@/components/ui/contact-section";
+import { LoadingScreen } from "@/components/ui/loading";
+
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -20,7 +22,9 @@ export default function Home() {
 
   return (
     <main className="overflow-x-hidden">
-      {isClient && (
+      {!isClient ? (
+        <LoadingScreen /> 
+      ) : (
         <>
           <div
             id="home"

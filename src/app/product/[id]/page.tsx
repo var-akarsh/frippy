@@ -1,4 +1,5 @@
 'use client'
+import { LoadingScreen } from "@/components/ui/loading";
 import ProductDescription from "@/components/ui/productDescription";
 import { useEffect, useState } from "react";
 
@@ -13,9 +14,10 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   const fetchProductDetails = async (productId: string) => {
+    setIsLoading(true);
     try {
       const response = await fetch(
-        `https://api.frippy.in/product/${productId}` // Replace with your API endpoint
+        `https://api.frippy.in/product/${productId}` 
       );
       const data = await response.json();
       setProduct(data);
@@ -27,11 +29,11 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>; // Show a loading message while fetching data
+    <LoadingScreen />
   }
 
   if (!product) {
-    return <div>Product not found.</div>; // Handle the case where the product is not found
+    return <div>Product not found.</div>; 
   }
 
   return <ProductDescription product={product} />;

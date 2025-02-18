@@ -1,9 +1,9 @@
 "use client";
 import Navbar from "@/components/navbar";
 import Image from "next/image";
-
 import { useEffect, useState } from "react";
 import FooterSection from "@/components/footerSection";
+import { LoadingScreen } from "@/components/ui/loading"; 
 
 const quotes = [
   "The telephone is a good way to talk to people without having to offer them a drink. — Fran Lebowitz",
@@ -20,7 +20,7 @@ const quotes = [
 
 const colors = ["bg-purple-200", "bg-[#F5F5DC]", "bg-[#DCE4C9]"];
 
-const ProductPage = () => {
+function OrderConfirmation({ params }: { params: { id: string } }) {
   const [orderId, setOrderId] = useState<string>("");
   const [quote, setQuote] = useState("");
   const [color, setColor] = useState("");
@@ -33,11 +33,16 @@ const ProductPage = () => {
   });
 
   useEffect(() => {
-    const storedOrderId = localStorage.getItem("orderId");
-    if (storedOrderId) {
-      setOrderId(storedOrderId);
+    if (params.id) {
+      setOrderId(params.id);
     }
+  }, [params.id]);
 
+  const [loading, setLoading] = useState<boolean>(true); // Set loading state to true initially
+
+  useEffect(() => {
+    localStorage.clear();
+  
     const updateQuoteAndColor = () => {
       setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
       setColor(colors[Math.floor(Math.random() * colors.length)]);
@@ -54,7 +59,8 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (orderId) {
-      fetch(`http://localhost:8080/order/${orderId}`)
+      setLoading(true);
+      fetch(`https://api.frippy.in/order/${orderId}`)
         .then((response) => response.json())
         .then((data) => {
           setOrderConfirmation({
@@ -62,14 +68,23 @@ const ProductPage = () => {
             colourName: data.colourName,
             price: data.price,
             status: data.status,
-            image_url: data.image_url,
+            image_url: data.imageUrl,
           });
         })
         .catch((error) => {
           console.error("Error fetching order:", error);
+          setLoading(false);
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
   }, [orderId]);
+
+  // If the page is loading, show the loading screen
+  if (loading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <>
@@ -217,6 +232,6 @@ const ProductPage = () => {
       </div>
     </>
   );
-};
+}
 
-export default ProductPage;
+export default OrderConfirmation;

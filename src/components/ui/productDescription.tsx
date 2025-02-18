@@ -3,7 +3,7 @@
 import { Radio, RadioGroup } from "@headlessui/react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCarousel from "./productCarousel";
 import Navbar from "../navbar";
 import FooterSection from "../footerSection";
@@ -13,17 +13,17 @@ function classNames(...classes: string[]) {
 }
 
 export default function ProductDescription({ product }: { product: any }) {
-  // Filter out any image where the color is "Global" for the initial state
   const filteredImages = product.images.filter(
     (img: any) => img.color !== "Global"
   );
 
-  // Store the selected color and its corresponding image URL
   const [selectedColor, setSelectedColor] = useState(
     filteredImages.length > 0 ? filteredImages[0].color : ""
   );
   const [colorByImage, setColorByImage] = useState(
-    filteredImages.length > 0 ? filteredImages[0].imageUrl : ""
+    filteredImages.length > 0
+      ? filteredImages[0].imageUrl
+      : product.images[0].imageUrl
   );
 
   const router = useRouter();
@@ -118,47 +118,49 @@ export default function ProductDescription({ product }: { product: any }) {
 
                 {/* Color Selection */}
                 {filteredImages.length > 0 && ( // Conditionally render the color selection */}
-                <div className="mt-6">
-                  <h3 className="text-sm font-medium text-gray-900">Colour</h3>
-                  <fieldset aria-label="Choose a colour" className="mt-4">
-                    <RadioGroup
-                      value={selectedColor}
-                      onChange={handleColorChange} // Handle color change
-                      className="flex items-center gap-x-3"
-                    >
-                      {filteredImages.map((img: any) => (
-                        <Radio
-                          key={img.color}
-                          value={img.color}
-                          aria-label={img.color}
-                          className="relative flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-hidden"
-                        >
-                          <span
-                            aria-hidden="true"
-                            className={classNames(
-                              "size-8 rounded-full border border-black/10 transition-all",
-                              selectedColor === img.color
-                                ? "ring-2 ring-black border-black scale-110"
-                                : ""
-                            )}
-                            style={{
-                              backgroundColor: img.colorHexCode, // Use colorHexCode for color circle
-                            }}
-                          />
-                        </Radio>
-                      ))}
-                    </RadioGroup>
-                  </fieldset>
-                  {/* Show Selected Color */}
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-700">
-                      Chosen Colour:{" "}
-                      <span className="font-medium text-gray-900">
-                        {selectedColor}
-                      </span>
-                    </p>
+                  <div className="mt-6">
+                    <h3 className="text-sm font-medium text-gray-900">
+                      Colour
+                    </h3>
+                    <fieldset aria-label="Choose a colour" className="mt-4">
+                      <RadioGroup
+                        value={selectedColor}
+                        onChange={handleColorChange} // Handle color change
+                        className="flex items-center gap-x-3"
+                      >
+                        {filteredImages.map((img: any) => (
+                          <Radio
+                            key={img.color}
+                            value={img.color}
+                            aria-label={img.color}
+                            className="relative flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-hidden"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className={classNames(
+                                "size-8 rounded-full border border-black/10 transition-all",
+                                selectedColor === img.color
+                                  ? "ring-2 ring-black border-black scale-110"
+                                  : ""
+                              )}
+                              style={{
+                                backgroundColor: img.colorHexCode, // Use colorHexCode for color circle
+                              }}
+                            />
+                          </Radio>
+                        ))}
+                      </RadioGroup>
+                    </fieldset>
+                    {/* Show Selected Color */}
+                    <div className="mt-2">
+                      <p className="text-sm text-gray-700">
+                        Chosen Colour:{" "}
+                        <span className="font-medium text-gray-900">
+                          {selectedColor}
+                        </span>
+                      </p>
+                    </div>
                   </div>
-                </div>
                 )}
 
                 {/* Order Now Button */}

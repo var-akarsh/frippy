@@ -33,44 +33,43 @@ export function AddressForm({
     pincode: "",
   });
   const router = useRouter();
+
   const handleCheckout = async () => {
     const productId = localStorage.getItem("selectedProductId");
     const colour = localStorage.getItem("colour");
     const colourHexCode = localStorage.getItem("colourHexCode");
-
-    
+  
     if (!productId) {
       console.error("No product ID found in local storage.");
       return;
     }
     const timestamp = new Date().getTime();
-    const id = timestamp.toString().slice(-6); 
+    const id = timestamp.toString().slice(-6); // Generating a unique id
   
     const payload = {
       ...selected,
       productId: parseInt(productId),
-      colourName:colour,
-      colourHexCode:colourHexCode, 
-      id:id
-
+      colourName: colour,
+      colourHexCode: colourHexCode,
+      id: id,
     };
   
     try {
-      const response = await axios.post("http://localhost:8080/order/create", payload); 
+      const response = await axios.post("https://api.frippy.in/order/create", payload);
   
       if (response.status === 200 || response.status === 201) {
-        localStorage.setItem("orderId", response.data);
-        router.push("/order"); 
+        const orderId = response.data;  // Assuming the orderId is in the response body
+  
+        // Redirect to the order page with the orderId
+        router.push(`/order/${orderId}`);
       } else {
         console.error("Error creating order:", response.statusText);
       }
     } catch (error) {
       console.error("Error creating order:", error);
     }
-    finally {
-      // localStorage.clear();
-    }
   };
+  
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const saveToLocalStorage = (data: any) => {

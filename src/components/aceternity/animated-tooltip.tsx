@@ -9,19 +9,21 @@ import {
   useSpring,
 } from "framer-motion";
 
-export const AnimatedTooltip = ({
-  items,
-}: {
-  items: {
-    id: number;
-    name: string;
-    image: any;
-  }[];
-}) => {
+interface TooltipItem {
+  id: number;
+  name: string;
+  image: any;
+}
+
+interface AnimatedTooltipProps {
+  items: TooltipItem[];
+  handleFilterClick: (name: string) => void;
+}
+
+export const AnimatedTooltip = ({ items, handleFilterClick }: AnimatedTooltipProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const springConfig = { stiffness: 100, damping: 5 };
   const x = useMotionValue(0); // going to set this value on mouse move
-  // rotate the tooltip
   const rotate = useSpring(
     useTransform(x, [-100, 100], [-45, 45]),
     springConfig
@@ -46,6 +48,7 @@ export const AnimatedTooltip = ({
             key={item.name}
             onMouseEnter={() => setHoveredIndex(item.id)}
             onMouseLeave={() => setHoveredIndex(null)}
+            onClick={()=> handleFilterClick(item.name)}
           >
             <AnimatePresence mode="popLayout">
               {hoveredIndex === item.id && (

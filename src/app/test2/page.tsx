@@ -1,10 +1,12 @@
-import React from 'react';
+import { LoadingScreen } from "@/components/ui/loading";
+import React from "react";
 
 const Test2Page: React.FC = () => {
-    return (
-        <div>
-        </div>
-    );
+  return (
+    <div>
+      <LoadingScreen />
+    </div>
+  );
 };
 
 export default Test2Page;

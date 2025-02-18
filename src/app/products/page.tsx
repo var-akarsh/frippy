@@ -1,30 +1,22 @@
 "use client";
 import { Modal, ModalTrigger } from "@/components/aceternity/animated-modal";
-import { FocusCards } from "@/components/aceternity/focus-card";
 import Navbar from "@/components/navbar";
 import { useEffect, useState } from "react";
-import Dropdown from "../../components/ui/dropdown"; // Import the Dropdown component
+import Dropdown from "../../components/ui/dropdown";
 
-import androidTempered from "../../../public/images/products/androidTempered.png";
-import iphoneTempered from "../../../public/images/products/iphoneTempered.jpeg";
-import matte from "../../../public/images/products/matte.jpg";
-import metalRing from "../../../public/images/products/metalRing.png";
-import paperBack from "../../../public/images/products/paperBack.png";
-import privacy from "../../../public/images/products/privacy.jpeg";
-import s23 from "../../../public/images/products/s23.jpeg";
-import silicone from "../../../public/images/products/silicone.jpeg";
-import spigen from "../../../public/images/products/spigen.jpg";
-import ProductsDisplay from "@/components/ui/productsDisplay";
 import { AnimatedTooltip } from "@/components/aceternity/animated-tooltip";
+import ProductsDisplay from "@/components/ui/productsDisplay";
 
 import all from "../../../public/images/quickfilters/All.png";
 import screenprotectors from "../../../public/images/quickfilters/ScreenProtectors.png";
 
-import mobilecases from "../../../public/images/quickfilters/MOBILECASE.png";
 import FooterSection from "@/components/footerSection";
+import mobilecases from "../../../public/images/quickfilters/MOBILECASE.png";
+import { LoadingScreen } from "@/components/ui/loading";
 
 type Product = {
   id: string;
+  itemTypeName: string;
   imageUrl: string;
   name: string;
   price: string;
@@ -35,7 +27,6 @@ type Option = {
   label: string;
 };
 
-// Define your filter options
 const quickFilters = [
   {
     id: 0,
@@ -44,33 +35,34 @@ const quickFilters = [
   },
   {
     id: 1,
-    name: "Screen Protectors",
+    name: "Screen Protector",
     image: screenprotectors,
   },
   {
     id: 2,
-    name: "Mobile Cases",
+    name: "Phone Case",
     image: mobilecases,
   },
 ];
 
 const ProductPage = () => {
-  const [selectedFilter, setSelectedFilter] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("All Products");
 
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedBrand, setSelectedBrand] = useState<string>("");
   const [selectedModel, setSelectedModel] = useState<string>("");
-  const [showProductCards, setShowProductCards] = useState<boolean>(false); 
-  const [loading, setLoading] = useState<boolean>(false); 
-  const [brands, setBrands] = useState<Option[]>([]); 
-  const [models, setModels] = useState<Option[]>([]); // Store models dynamically based on brand
+  const [showProductCards, setShowProductCards] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [brands, setBrands] = useState<Option[]>([]);
+  const [models, setModels] = useState<Option[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   const handleFilterClick = (filter: any) => {
     setSelectedFilter(filter);
   };
 
   const fetchProducts = async (modelName: string) => {
-    setLoading(true); // Set loading state
+    setLoading(true);
     try {
       const response = await fetch(
         `https://api.frippy.in/product/getProductsByModel?modelName=${encodeURIComponent(
@@ -82,13 +74,24 @@ const ProductPage = () => {
       }
       const data: Product[] = await response.json();
       setProducts(data);
-      setShowProductCards(true); // Show product cards once data is fetched
+      setShowProductCards(true);
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
-      setLoading(false); // End loading state
+      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (selectedFilter === "All Products") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(
+        (product) => product.itemTypeName === selectedFilter
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [selectedFilter, products]);
 
   const handleFindItClick = () => {
     if (selectedModel) {
@@ -103,14 +106,13 @@ const ProductPage = () => {
     { value: "accessories", label: "Accessories" },
   ];
 
-
   const handleBrandSelect = (brand: Option) => {
-    setSelectedBrand(brand.label); 
+    setSelectedBrand(brand.label);
     fetchModels(brand.label);
   };
 
   const handleModelSelect = (model: Option) => {
-    setSelectedModel(model.label); // Set the selected model label
+    setSelectedModel(model.label);
   };
 
   useEffect(() => {
@@ -124,16 +126,16 @@ const ProductPage = () => {
         throw new Error("Failed to fetch brands");
       }
       const data = await response.json();
-      const brandOptions = data.map((brand:any) => ({
+      const brandOptions = data.map((brand: any) => ({
         value: brand.brandName,
         label: brand.brandName,
       }));
-      setBrands(brandOptions); 
+      setBrands(brandOptions);
     } catch (error) {
       console.error("Error fetching brands:", error);
-    } finally {
     }
   };
+
   const fetchModels = async (brandName: string) => {
     try {
       const response = await fetch(
@@ -144,15 +146,14 @@ const ProductPage = () => {
       if (!response.ok) {
         throw new Error("Failed to fetch models");
       }
-      const data= await response.json();
-      const modelOptions = data.map((model:any) => ({
+      const data = await response.json();
+      const modelOptions = data.map((model: any) => ({
         value: model.modelName,
         label: model.modelName,
       }));
-      setModels(modelOptions); 
+      setModels(modelOptions);
     } catch (error) {
       console.error("Error fetching models:", error);
-    } finally {
     }
   };
 
@@ -201,6 +202,13 @@ const ProductPage = () => {
                 />
               </div>
             }
+
+            {loading && (
+              <p className="text-center mt-4 text-gray-600">
+                <LoadingScreen />
+              </p>
+            )}
+
             {selectedBrand && selectedModel && (
               <div
                 className="mt-6"
@@ -220,16 +228,25 @@ const ProductPage = () => {
             )}
           </div>
         </div>
+
         <div className="mt-16">
           <div className="flex justify-center space-x-4 mb-8">
             <div className="flex flex-row items-center justify-center mb-10 w-full">
-              {products.length>0 && <AnimatedTooltip items={quickFilters} />}
+              {products.length > 0 && (
+                <AnimatedTooltip
+                  handleFilterClick={handleFilterClick}
+                  items={quickFilters}
+                />
+              )}
             </div>
           </div>
 
-          {products.length>0 && <ProductsDisplay cards={products} />}
+          {loading && <LoadingScreen />}
+
+          {products.length > 0 && <ProductsDisplay cards={filteredProducts} />}
         </div>
       </div>
+
       {!showProductCards && <FooterSection />}
     </>
   );

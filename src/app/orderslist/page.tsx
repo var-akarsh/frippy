@@ -1,38 +1,55 @@
-import React from "react";
+'use client';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { OrderDTO } from "@/DTO/order";
 
 function OrdersList() {
-  const orders = [
-    {
-      id: 1,
-      productId: 101,
-      name: "John Doe",
-      contact: 9876543210,
-      pincode: 110001,
-      addressLineA: "123 Main Street 123",
-      addressLineB: "123 Main Street ",
-      status: "PENDING",
-    },
-    {
-      id: 2,
-      productId: 102,
-      name: "Jane Smith",
-      contact: 9123456789,
-      pincode: 560001,
-      addressLineA: "456 Park Avenue",
-      addressLineB: "Suite 12C",
-      status: "SHIPPED",
-    },
-    {
-      id: 3,
-      productId: 103,
-      name: "Michael Johnson",
-      contact: 9988776655,
-      pincode: 400001,
-      addressLineA: "789 Elm Street",
-      addressLineB: "Building 5, Flat 302",
-      status: "DELIVERED",
-    },
-  ];
+  const [orders, setOrders] = useState<OrderDTO[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [authorized, setAuthorized] = useState(false);
+
+  const getQueryParam = (param: string) => {
+    const queryParams = new URLSearchParams(window.location.search);
+    return queryParams.get(param);
+  };
+
+  useEffect(() => {
+    const password = getQueryParam("password");
+    if (password === "frippyAdmin0130") {
+      setAuthorized(true);
+    } else {
+      setAuthorized(false);
+    }
+  }, []);
+
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get("https://api.frippy.in/order");
+      setOrders(response.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (authorized) {
+      fetchOrders();
+    }
+  }, [authorized]);
+
+  if (!authorized) {
+    return (
+      <div className="container mx-auto p-4">
+        <h2 className="text-2xl font-bold text-red-600">Unauthorized</h2>
+        <p>Please provide a valid password to access this page.</p>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return <div className="container mx-auto p-4">Loading orders...</div>;
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -46,34 +63,40 @@ function OrdersList() {
               <th className="border px-4 py-2">Name</th>
               <th className="border px-4 py-2">Contact</th>
               <th className="border px-4 py-2">Pincode</th>
-              <th className="border px-4 py-2">Address Line A</th>
-              <th className="border px-4 py-2">Address Line B</th>
+              <th className="border px-4 py-2">Address Line 1</th>
+              <th className="border px-4 py-2">Address Line 2</th>
               <th className="border px-4 py-2">Status</th>
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
-              <tr key={order.id} className="text-center border">
-                <td className="border px-4 py-2">{order.id}</td>
-                <td className="border px-4 py-2">{order.productId}</td>
-                <td className="border px-4 py-2">{order.name}</td>
-                <td className="border px-4 py-2">{order.contact}</td>
-                <td className="border px-4 py-2">{order.pincode}</td>
-                <td className="border px-4 py-2">{order.addressLineA}</td>
-                <td className="border px-4 py-2">{order.addressLineB}</td>
-                <td
-                  className={`border px-4 py-2 font-bold ${
-                    order.status === "PENDING"
-                      ? "text-yellow-500"
-                      : order.status === "SHIPPED"
-                      ? "text-blue-500"
-                      : "text-green-500"
-                  }`}
-                >
-                  {order.status}
-                </td>
+            {orders.length > 0 ? (
+              orders.map((order: OrderDTO) => (
+                <tr key={order.id} className="text-center border">
+                  <td className="border px-4 py-2">{order.id}</td>
+                  <td className="border px-4 py-2">{order.productId}</td>
+                  <td className="border px-4 py-2">{order.name}</td>
+                  <td className="border px-4 py-2">{order.contactNumber}</td>
+                  <td className="border px-4 py-2">{order.pincode}</td>
+                  <td className="border px-4 py-2">{order.addressLine1}</td>
+                  <td className="border px-4 py-2">{order.addressLine2}</td>
+                  <td
+                    className={`border px-4 py-2 font-bold ${
+                      order.status === "PENDING"
+                        ? "text-yellow-500"
+                        : order.status === "SHIPPED"
+                        ? "text-blue-500"
+                        : "text-green-500"
+                    }`}
+                  >
+                    {order.status}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td className="text-center py-4">No orders found.</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
