@@ -29,11 +29,11 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
   };
 
   if (isLoading) {
-    <LoadingScreen />
+    return <LoadingScreen />;  
   }
 
   if (!product) {
-    return <div>Product not found.</div>; 
+    return <div>Product not found.</div>;  
   }
 
   return <ProductDescription product={product} />;
