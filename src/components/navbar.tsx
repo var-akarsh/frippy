@@ -1,17 +1,17 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(10);
+  const lastScrollY = useRef(0);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((prev) => !prev);
+  }, []);
 
   const menuItems = [
     { name: "Home", href: "#home" },
@@ -20,43 +20,44 @@ const Navbar = () => {
     { name: "Products", href: "/products" },
     { name: "Track", href: "/track" },
     { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "/contact" }, // Redirect to /contact
+    { name: "Contact", href: "/contact" },
   ];
 
-  const handleNavigation = (href: string) => {
-    if (href === "/products" || href === "/track" || href === "/contact") {
-      router.push(href);
-    } else {
-      if (window.location.pathname === "/") {
-        const section = document.getElementById(href.substring(1));
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
+  const handleNavigation = useCallback(
+    (href: string) => {
+      if (href.startsWith("/")) {
+        router.push(href);
       } else {
-        router.push("/");
+        if (window.location.pathname === "/") {
+          const section = document.getElementById(href.substring(1));
+          if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+          }
+        } else {
+          router.push("/");
+        }
       }
-    }
-  };
-
-  const controlNavbar = () => {
-    if (window.scrollY < 10 || window.scrollY < lastScrollY) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-    setLastScrollY(window.scrollY);
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
       setIsMenuOpen(false);
-    }
-  };
+    },
+    [router]
+  );
+
+  const controlNavbar = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    setIsVisible(currentScrollY < 10 || currentScrollY < lastScrollY.current);
+    lastScrollY.current = currentScrollY;
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", controlNavbar);
     return () => window.removeEventListener("scroll", controlNavbar);
-  }, [lastScrollY]);
+  }, [controlNavbar]);
+
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsMenuOpen(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -65,7 +66,7 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isMenuOpen]);
+  }, [isMenuOpen, handleClickOutside]);
 
   return (
     <nav
@@ -76,14 +77,12 @@ const Navbar = () => {
     >
       <div className="flex justify-between items-center w-full">
         {/* Clickable Logo */}
-        <div className="flex items-center">
-          <button
-            onClick={() => router.push("/")}
-            className="text-white font-gilroy-bold text-2xl font-extrabold focus:outline-none"
-          >
-            Frippy
-          </button>
-        </div>
+        <button
+          onClick={() => router.push("/")}
+          className="text-white font-gilroy-bold text-2xl font-extrabold focus:outline-none"
+        >
+          Frippy
+        </button>
 
         {/* Hamburger Icon for Mobile */}
         <div className="lg:hidden">
@@ -109,20 +108,18 @@ const Navbar = () => {
         </div>
 
         {/* Menu Items for Larger Screens */}
-        <div className="hidden lg:flex lg:items-center">
-          <ul className="flex space-x-5">
-            {menuItems.map((item) => (
-              <li key={item.name}>
-                <button
-                  onClick={() => handleNavigation(item.href)}
-                  className="text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300 cursor-pointer"
-                >
-                  {item.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="hidden lg:flex space-x-5">
+          {menuItems.map((item) => (
+            <li key={item.name}>
+              <button
+                onClick={() => handleNavigation(item.href)}
+                className="text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300 cursor-pointer"
+              >
+                {item.name}
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/* Mobile Menu */}
@@ -132,10 +129,7 @@ const Navbar = () => {
             {menuItems.map((item) => (
               <li key={item.name}>
                 <button
-                  onClick={() => {
-                    handleNavigation(item.href);
-                    setIsMenuOpen(false);
-                  }}
+                  onClick={() => handleNavigation(item.href)}
                   className="block text-md font-gilroy-bold text-white hover:text-black transition-colors duration-300 cursor-pointer"
                 >
                   {item.name}

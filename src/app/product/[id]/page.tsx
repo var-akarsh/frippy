@@ -15,9 +15,10 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
 
   const fetchProductDetails = async (productId: string) => {
     setIsLoading(true);
+    const url = process.env.NEXT_PUBLIC_GET_PRODUCTBYID
     try {
       const response = await fetch(
-        `https://api.frippy.in/product/${productId}` 
+        `${url}${productId}` 
       );
       const data = await response.json();
       setProduct(data);

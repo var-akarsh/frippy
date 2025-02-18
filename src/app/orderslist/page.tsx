@@ -23,8 +23,9 @@ function OrdersList() {
   }, []);
 
   const fetchOrders = async () => {
+    const url =  process.env.NEXT_PUBLIC_GETALL_ORDERS!;
     try {
-      const response = await axios.get("https://api.frippy.in/order");
+      const response = await axios.get(url);
       setOrders(response.data);
       setLoading(false);
     } catch (error) {

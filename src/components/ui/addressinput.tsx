@@ -53,9 +53,10 @@ export function AddressForm({
       colourHexCode: colourHexCode,
       id: id,
     };
-  
+    
+    const  url = process.env.NEXT_PUBLIC_CREATE_ORDER!;
     try {
-      const response = await axios.post("https://api.frippy.in/order/create", payload);
+      const response = await axios.post(url, payload);
   
       if (response.status === 200 || response.status === 201) {
         const orderId = response.data;  // Assuming the orderId is in the response body

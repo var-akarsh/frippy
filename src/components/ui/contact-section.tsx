@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Image from "next/image";
 import contactImage from "../../../public/images/Frippy.png";
 
 const ContactSection = () => {

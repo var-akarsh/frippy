@@ -59,8 +59,9 @@ function OrderConfirmation({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (orderId) {
+      const url = process.env.NEXT_PUBLIC_GET_ORDERBYID;
       setLoading(true);
-      fetch(`https://api.frippy.in/order/${orderId}`)
+      fetch(`${url}/${orderId}`)
         .then((response) => response.json())
         .then((data) => {
           setOrderConfirmation({

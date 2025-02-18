@@ -91,7 +91,7 @@ export const metadata: Metadata = {
       "Shop Frippy for premium mobile covers, tempered glass, and phone accessories with same-day delivery and free installation. Enjoy a free spa with every purchase and support our mission to sponsor the education of 1 lakh children in Bangalore.",
     images: [
       {
-        url: "/images/og-homepage.jpg",
+        url: "/images/frippyHomePage.jpeg",
         width: 1200,
         height: 630,
         alt: "Frippy Bangalore homepage banner",
