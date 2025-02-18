@@ -4,21 +4,20 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const quotes = [
+  "Jaldi kar kal subha Panvel nikalna hai!",
   "Kahin pahunchne ke liye kahin se nikalna bahut zaroori hota hai.",
   "Hang tight, magic is on its way!",
   "Good things come to those who wait... but not too long!",
-  "Jaldi kar kal subha Panvel nikalna hai!",
   "Zindagi mein kuchh banna ho toh 'kuchh' banna, par sabse bada 'kuchh' banna.",
   "Patience is a virtue, but so is excitement!",
   "Good things happen when you least expect them. Almost there!"
 ];
 
 const colors = [
-  "text-orange-600", 
+  "text-gray-600",    
   "text-purple-600", 
   "text-black",    
-
-  "text-gray-600",    
+  "text-orange-600", 
   "text-blue-500", 
 ];
 

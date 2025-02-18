@@ -85,8 +85,8 @@ export default function ProductDescription({ product }: { product: any }) {
               </div>
 
               {/* Right: Product Details */}
-              <div className="lg:col-span-1 lg:self-start ml-10 mt-32">
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+              <div className="ml-0 mt-0 lg:ml-10 lg:mt-32 lg:col-span-1 lg:self-start">
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                   {product.productName}
                 </h1>
 

@@ -4,7 +4,7 @@ import ayush from "../../public/images/testimonials/ayush.jpg"
 import prasoon from "../../public/images/testimonials/prasoon.jpg"
 import vaibhav from "../../public/images/testimonials/vaibhav.jpg"
 import arpan from "../../public/images/testimonials/arpan.jpeg"
-
+import khushi from "../../public/images/testimonials/khushi.jpg"
 export function Testimonials() {
   const testimonials = [
     {
@@ -14,13 +14,13 @@ export function Testimonials() {
       designation: "Great Service & Extra Perks",
       src: prasoon,
     },
-    // {
-    //   quote:
-    //     "I ordered a mobile case and was pleasantly surprised to get a discount on a screen guard. The product quality is amazing, and I got a premium item at the same price you'd pay in the market. Plus, the delivery and installation at home made the whole experience super convenient!",
-    //   name: "Tanmay Mishra",
-    //   designation: "Discounts & Premium Quality",
-    //   src: "https://media.istockphoto.com/id/1326417862/photo/young-woman-laughing-while-relaxing-at-home.jpg?s=612x612&w=0&k=20&c=cd8e6RBGOe4b8a8vTcKW0Jo9JONv1bKSMTKcxaCra8c=",
-    // },
+    {
+      quote:
+        "I ordered a mobile case and was pleasantly surprised to get a discount on a screen guard. The product quality is amazing, and I got a premium item at the same price you'd pay in the market. Plus, the delivery and installation at home made the whole experience super convenient!",
+      name: "Khushi Srivastava",
+      designation: "Discounts & Premium Quality",
+      src: khushi,
+    },
     {
       quote:
         "I ordered a mobile case and received it on time. The case is of great quality, and the best part was the free installation at home. It's so convenient to get everything done from home – I didn’t even have to go to the market! Excellent service!",
@@ -48,7 +48,7 @@ export function Testimonials() {
       name: "Arpan Dixit",
       designation: "No Hassle, Just Great Service",
       src: arpan,
-    },
+    }
   ];
   return (
     <div

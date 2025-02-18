@@ -19,14 +19,14 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
   }, [mainImage]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 pt-8">
       <div className="order-1">
         <img
           src={selectedImage}
           alt="Product"
           className="w-full h-auto rounded-lg shadow-md mb-4"
         />
-        <div className="flex gap-4 py-4 justify-center overflow-x-auto">
+        <div className="flex gap-2 pt-4 justify-center overflow-x-auto">
           {thumbnails.map((src, index) => (
             <img
               key={index}
