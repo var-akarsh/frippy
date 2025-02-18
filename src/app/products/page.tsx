@@ -63,24 +63,23 @@ const ProductPage = () => {
 
   const fetchProducts = async (modelName: string) => {
     setLoading(true);
+    const url = process.env.NEXT_PUBLIC_GETALL_PRODUCTS_BYMODEL!;
     try {
-      const response = await fetch(
-        `https://api.frippy.in/product/getProductsByModel?modelName=${encodeURIComponent(
-          modelName
-        )}`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch products");
-      }
-      const data: Product[] = await response.json();
-      setProducts(data);
-      setShowProductCards(true);
+        const response = await fetch(
+            `${url}?modelName=${encodeURIComponent(modelName)}`
+        );
+        if (!response.ok) {
+            throw new Error("Failed to fetch products");
+        }
+        const data: Product[] = await response.json();
+        setProducts(data);
+        setShowProductCards(true);
     } catch (error) {
-      console.error("Error fetching products:", error);
+        console.error("Error fetching products:", error);
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   useEffect(() => {
     if (selectedFilter === "All Products") {
@@ -99,12 +98,6 @@ const ProductPage = () => {
     }
   };
 
-  const productTypes: Option[] = [
-    { value: "mobile", label: "Mobile" },
-    { value: "laptop", label: "Laptop" },
-    { value: "tablet", label: "Tablet" },
-    { value: "accessories", label: "Accessories" },
-  ];
 
   const handleBrandSelect = (brand: Option) => {
     setSelectedBrand(brand.label);
@@ -120,8 +113,10 @@ const ProductPage = () => {
   }, []);
 
   const fetchBrands = async () => {
+    const url = process.env.NEXT_PUBLIC_GETALL_BRANDS!;
+    console.log("url", url);
     try {
-      const response = await fetch("https://api.frippy.in/brand");
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error("Failed to fetch brands");
       }
@@ -137,25 +132,25 @@ const ProductPage = () => {
   };
 
   const fetchModels = async (brandName: string) => {
+    const url = process.env.NEXT_PUBLIC_GETALL_MODELS_BYBRAND!;
     try {
-      const response = await fetch(
-        `https://api.frippy.in/phoneModel/getPhoneModelsByBrand?brandName=${encodeURIComponent(
-          brandName
-        )}`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch models");
-      }
-      const data = await response.json();
-      const modelOptions = data.map((model: any) => ({
-        value: model.modelName,
-        label: model.modelName,
-      }));
-      setModels(modelOptions);
+        const response = await fetch(
+            `${url}?brandName=${encodeURIComponent(brandName)}`
+        );
+        if (!response.ok) {
+            throw new Error("Failed to fetch models");
+        }
+        const data = await response.json();
+        const modelOptions = data.map((model: any) => ({
+            value: model.modelName,
+            label: model.modelName,
+        }));
+        setModels(modelOptions);
     } catch (error) {
-      console.error("Error fetching models:", error);
+        console.error("Error fetching models:", error);
     }
-  };
+};
+
 
   return (
     <>
