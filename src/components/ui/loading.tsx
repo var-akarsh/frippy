@@ -41,7 +41,7 @@ export const LoadingScreen = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 2 }}
-          className={`text-4xl font-bold text-center ${colors[quoteIndex % colors.length]}`}
+          className={`text-xl font-bold text-center ${colors[quoteIndex % colors.length]}`}
           >
           {` ${quotes[quoteIndex]} `}
         </motion.div>
