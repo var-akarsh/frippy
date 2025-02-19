@@ -13,6 +13,7 @@ import screenprotectors from "../../../public/images/quickfilters/ScreenProtecto
 import FooterSection from "@/components/footerSection";
 import mobilecases from "../../../public/images/quickfilters/MOBILECASE.png";
 import { LoadingScreen } from "@/components/ui/loading";
+import { useRouter } from "next/navigation";
 
 type Product = {
   id: string;
@@ -92,13 +93,30 @@ const ProductPage = () => {
     }
   }, [selectedFilter, products]);
 
+  const router = useRouter(); // Use the new router from next/navigation
+
   const handleFindItClick = () => {
-    if (selectedModel) {
+    if (selectedModel && selectedBrand) {
+      // Update the URL with query params
+      router.push(`/products?brand=${selectedBrand}&model=${selectedModel}`);
+
+      // Fetch products after navigating
       fetchProducts(selectedModel);
     }
   };
 
-
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const brand = params.get("brand");
+    const model = params.get("model");
+    console.log("model", model);
+    if (brand && model) {
+      setSelectedBrand(brand);
+      setSelectedModel(model);
+      fetchProducts(model);
+      fetchModels(brand); // Fetch models for the selected brand
+    }
+  }, []);
   const handleBrandSelect = (brand: Option) => {
     setSelectedBrand(brand.label);
     fetchModels(brand.label);
@@ -212,15 +230,15 @@ const ProductPage = () => {
                 onClick={handleFindItClick} // Show the product cards when button is clicked
               >
                 <Modal>
-                  <ModalTrigger className="bg-[#E07B39] dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
-                    <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
-                      Find It!
-                    </span>
-                    <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
-                      🔍
-                    </div>
-                  </ModalTrigger>
-                </Modal>
+  <ModalTrigger className="bg-[#E07B39] dark:bg-white dark:text-black text-white flex justify-center items-center group/modal-btn whitespace-nowrap overflow-hidden">
+    <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
+      Find It!
+    </span>
+    <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
+      🔍
+    </div>
+  </ModalTrigger>
+</Modal>
               </div>
             )}
           </div>
