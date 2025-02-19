@@ -3,13 +3,10 @@ import { Modal, ModalTrigger } from "@/components/aceternity/animated-modal";
 import Navbar from "@/components/navbar";
 import { useEffect, useState } from "react";
 import Dropdown from "../../components/ui/dropdown";
-
 import { AnimatedTooltip } from "@/components/aceternity/animated-tooltip";
 import ProductsDisplay from "@/components/ui/productsDisplay";
-
 import all from "../../../public/images/quickfilters/All.png";
 import screenprotectors from "../../../public/images/quickfilters/ScreenProtectors.png";
-
 import FooterSection from "@/components/footerSection";
 import mobilecases from "../../../public/images/quickfilters/MOBILECASE.png";
 import { LoadingScreen } from "@/components/ui/loading";
@@ -28,34 +25,35 @@ type Option = {
 };
 
 const quickFilters = [
-  {
-    id: 0,
-    name: "All Products",
-    image: all,
-  },
-  {
-    id: 1,
-    name: "Screen Protector",
-    image: screenprotectors,
-  },
-  {
-    id: 2,
-    name: "Phone Case",
-    image: mobilecases,
-  },
+  { id: 0, name: "All Products", image: all },
+  { id: 1, name: "Screen Protector", image: screenprotectors },
+  { id: 2, name: "Phone Case", image: mobilecases },
 ];
 
 const ProductPage = () => {
   const [selectedFilter, setSelectedFilter] = useState("All Products");
-
   const [products, setProducts] = useState<Product[]>([]);
-  const [selectedBrand, setSelectedBrand] = useState<string>("");
-  const [selectedModel, setSelectedModel] = useState<string>("");
+  const [selectedBrand, setSelectedBrand] = useState<string>(
+    sessionStorage.getItem("selectedBrand") || ""
+  );
+  const [selectedModel, setSelectedModel] = useState<string>(
+    sessionStorage.getItem("selectedModel") || ""
+  );
   const [showProductCards, setShowProductCards] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [brands, setBrands] = useState<Option[]>([]);
   const [models, setModels] = useState<Option[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [previousProducts, setPreviousProducts] = useState<Product[]>(
+    JSON.parse(sessionStorage.getItem("products") || "[]")
+  );
+
+  useEffect(() => {
+    if (previousProducts.length > 0) {
+      setProducts(previousProducts);
+      setShowProductCards(true);
+    }
+  }, [previousProducts]);
 
   const handleFilterClick = (filter: any) => {
     setSelectedFilter(filter);
@@ -65,21 +63,22 @@ const ProductPage = () => {
     setLoading(true);
     const url = process.env.NEXT_PUBLIC_GETALL_PRODUCTS_BYMODEL!;
     try {
-        const response = await fetch(
-            `${url}?modelName=${encodeURIComponent(modelName)}`
-        );
-        if (!response.ok) {
-            throw new Error("Failed to fetch products");
-        }
-        const data: Product[] = await response.json();
-        setProducts(data);
-        setShowProductCards(true);
+      const response = await fetch(
+        `${url}?modelName=${encodeURIComponent(modelName)}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+      const data: Product[] = await response.json();
+      setProducts(data);
+      setShowProductCards(true);
+      sessionStorage.setItem("products", JSON.stringify(data));
     } catch (error) {
-        console.error("Error fetching products:", error);
+      console.error("Error fetching products:", error);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
 
   useEffect(() => {
     if (selectedFilter === "All Products") {
@@ -98,14 +97,15 @@ const ProductPage = () => {
     }
   };
 
-
   const handleBrandSelect = (brand: Option) => {
     setSelectedBrand(brand.label);
+    sessionStorage.setItem("selectedBrand", brand.label);
     fetchModels(brand.label);
   };
 
   const handleModelSelect = (model: Option) => {
     setSelectedModel(model.label);
+    sessionStorage.setItem("selectedModel", model.label);
   };
 
   useEffect(() => {
@@ -134,23 +134,22 @@ const ProductPage = () => {
   const fetchModels = async (brandName: string) => {
     const url = process.env.NEXT_PUBLIC_GETALL_MODELS_BYBRAND!;
     try {
-        const response = await fetch(
-            `${url}?brandName=${encodeURIComponent(brandName)}`
-        );
-        if (!response.ok) {
-            throw new Error("Failed to fetch models");
-        }
-        const data = await response.json();
-        const modelOptions = data.map((model: any) => ({
-            value: model.modelName,
-            label: model.modelName,
-        }));
-        setModels(modelOptions);
+      const response = await fetch(
+        `${url}?brandName=${encodeURIComponent(brandName)}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch models");
+      }
+      const data = await response.json();
+      const modelOptions = data.map((model: any) => ({
+        value: model.modelName,
+        label: model.modelName,
+      }));
+      setModels(modelOptions);
     } catch (error) {
-        console.error("Error fetching models:", error);
+      console.error("Error fetching models:", error);
     }
-};
-
+  };
 
   return (
     <>
@@ -180,25 +179,22 @@ const ProductPage = () => {
               />
             </div>
 
-            {
-              <div className="flex flex-col">
-                <p className="text-black font-gilroy-bold font-bold sm:text-2xl sm:text-left md:text-2xl lg:text-2xl leading-tight">
-                  Model
-                  <span className="text-[#E07B39] inline-block relative">
-                    <span className="block md:w-[140%] lg:w-[250%]"></span>
-                  </span>
-                </p>
+            <div className="flex flex-col">
+              <p className="text-black font-gilroy-bold font-bold sm:text-2xl sm:text-left md:text-2xl lg:text-2xl leading-tight">
+                Model
+                <span className="text-[#E07B39] inline-block relative">
+                  <span className="block md:w-[140%] lg:w-[250%]"></span>
+                </span>
+              </p>
 
-                <Dropdown
-                  label="Choose your model"
-                  options={models}
-                  selectedOption={selectedModel}
-                  onSelect={handleModelSelect}
-                  disabled={models.length === 0} // Disable if no models are available
-
-                />
-              </div>
-            }
+              <Dropdown
+                label="Choose your model"
+                options={models}
+                selectedOption={selectedModel}
+                onSelect={handleModelSelect}
+                disabled={models.length === 0}
+              />
+            </div>
 
             {loading && (
               <p className="text-center mt-4 text-gray-600">
@@ -207,10 +203,7 @@ const ProductPage = () => {
             )}
 
             {selectedBrand && selectedModel && (
-              <div
-                className="mt-6"
-                onClick={handleFindItClick} // Show the product cards when button is clicked
-              >
+              <div className="mt-6" onClick={handleFindItClick}>
                 <Modal>
                   <ModalTrigger className="bg-[#E07B39] dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
                     <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
