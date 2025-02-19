@@ -66,21 +66,21 @@ const ProductPage = () => {
     setLoading(true);
     const url = process.env.NEXT_PUBLIC_GETALL_PRODUCTS_BYMODEL!;
     try {
-        const response = await fetch(
-            `${url}?modelName=${encodeURIComponent(modelName)}`
-        );
-        if (!response.ok) {
-            throw new Error("Failed to fetch products");
-        }
-        const data: Product[] = await response.json();
-        setProducts(data);
-        setShowProductCards(true);
+      const response = await fetch(
+        `${url}?modelName=${encodeURIComponent(modelName)}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+      const data: Product[] = await response.json();
+      setProducts(data);
+      setShowProductCards(true);
     } catch (error) {
-        console.error("Error fetching products:", error);
+      console.error("Error fetching products:", error);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
 
   useEffect(() => {
     if (selectedFilter === "All Products") {
@@ -152,23 +152,22 @@ const ProductPage = () => {
   const fetchModels = async (brandName: string) => {
     const url = process.env.NEXT_PUBLIC_GETALL_MODELS_BYBRAND!;
     try {
-        const response = await fetch(
-            `${url}?brandName=${encodeURIComponent(brandName)}`
-        );
-        if (!response.ok) {
-            throw new Error("Failed to fetch models");
-        }
-        const data = await response.json();
-        const modelOptions = data.map((model: any) => ({
-            value: model.modelName,
-            label: model.modelName,
-        }));
-        setModels(modelOptions);
+      const response = await fetch(
+        `${url}?brandName=${encodeURIComponent(brandName)}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch models");
+      }
+      const data = await response.json();
+      const modelOptions = data.map((model: any) => ({
+        value: model.modelName,
+        label: model.modelName,
+      }));
+      setModels(modelOptions);
     } catch (error) {
-        console.error("Error fetching models:", error);
+      console.error("Error fetching models:", error);
     }
-};
-
+  };
 
   return (
     <>
@@ -213,7 +212,6 @@ const ProductPage = () => {
                   selectedOption={selectedModel}
                   onSelect={handleModelSelect}
                   disabled={models.length === 0} // Disable if no models are available
-
                 />
               </div>
             }
@@ -230,15 +228,15 @@ const ProductPage = () => {
                 onClick={handleFindItClick} // Show the product cards when button is clicked
               >
                 <Modal>
-  <ModalTrigger className="bg-[#E07B39] dark:bg-white dark:text-black text-white flex justify-center items-center group/modal-btn whitespace-nowrap overflow-hidden">
-    <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
-      Find It!
-    </span>
-    <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
-      🔍
-    </div>
-  </ModalTrigger>
-</Modal>
+                  <ModalTrigger className="bg-[#E07B39] dark:bg-white dark:text-black text-white flex justify-center items-center group/modal-btn whitespace-nowrap overflow-hidden">
+                    <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
+                      Find It!
+                    </span>
+                    <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
+                      🔍
+                    </div>
+                  </ModalTrigger>
+                </Modal>
               </div>
             )}
           </div>

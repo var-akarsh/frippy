@@ -86,11 +86,11 @@ export default function ProductDescription({ product }: { product: any }) {
 
               {/* Right: Product Details */}
               <div className="ml-0 mt-0 lg:ml-10 lg:mt-32 lg:col-span-1 lg:self-start">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+              <h1 className="text-2xl sm:mt-4 font-bold tracking-tight text-gray-900 sm:text-3xl">
                   {product.productName}
                 </h1>
 
-                <p className="text-3xl tracking-tight text-gray-900 mt-2">
+                <p className="text-3xl sm:mt-2 tracking-tight text-gray-900 mt-2">
                   ₹{product.price}
                 </p>
 
